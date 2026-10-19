@@ -53,15 +53,16 @@ async function doPush(){
  const res={ok:true,err:'',conf:0};
  for(const c of cols){
   if(!c.ok||c.ro)continue;
-  const m=snap[c.key],V=vers[c.key],seen=new Set(),ch=[];
-  for(const r of c.get()){if(!r||r.id==null)continue;seen.add(r.id);const j=J(r);if(m[r.id]!==j)ch.push([r,j])}
+  const m=snap[c.key],V=vers[c.key],seen=new Set(),cm=new Map();
+  for(const r of c.get()){if(!r||r.id==null)continue;seen.add(r.id);const j=J(r);if(m[r.id]!==j)cm.set(r.id,[r,j])}
+  const ch=[...cm.values()];
   const del=Object.keys(m).filter(id=>!seen.has(id));
   if(!ch.length&&!del.length)continue;
   if(SB.akses(c.mod)!=='tulis'){res.ok=false;res.err='Hak akses Anda hanya-baca: perubahan pada '+(MODS[c.mod]||c.table)+' tidak disimpan.';await loadCol(c);continue}
   c.infl=new Map(ch.map(([r,j])=>[r.id,j]));
   try{
    const ins=ch.filter(([r])=>V[r.id]==null),upd=ch.filter(([r])=>V[r.id]!=null);
-   for(let i=0;i<ins.length;i+=300){const b=ins.slice(i,i+300),{data,error}=await sb.from(c.table).insert(b.map(([r])=>({id:r.id,data:r}))).select('id,ver');if(error)throw error;data.forEach(x=>V[x.id]=x.ver);b.forEach(([r,j])=>m[r.id]=j);if(ins.length>300)status('Menyimpan '+c.table+' '+Math.min(i+300,ins.length)+'/'+ins.length)}
+   for(let i=0;i<ins.length;i+=300){const b=ins.slice(i,i+300),{data,error}=await sb.from(c.table).upsert(b.map(([r])=>({id:r.id,data:r})),{onConflict:'id'}).select('id,ver');if(error)throw error;data.forEach(x=>V[x.id]=x.ver);b.forEach(([r,j])=>m[r.id]=j);if(ins.length>300)status('Menyimpan '+c.table+' '+Math.min(i+300,ins.length)+'/'+ins.length)}
    if(upd.length>25){for(let i=0;i<upd.length;i+=300){const b=upd.slice(i,i+300),{data,error}=await sb.from(c.table).upsert(b.map(([r])=>({id:r.id,data:r})),{onConflict:'id'}).select('id,ver');if(error)throw error;data.forEach(x=>V[x.id]=x.ver);b.forEach(([r,j])=>m[r.id]=j);status('Menyimpan '+c.table+' '+Math.min(i+300,upd.length)+'/'+upd.length)}}
    else for(const[r,j]of upd){const{data,error}=await sb.from(c.table).update({data:r}).eq('id',r.id).eq('ver',V[r.id]).select('id,ver');if(error)throw error;if(!data.length){await conflict(c,r.id,res);continue}V[r.id]=data[0].ver;m[r.id]=j}
    for(let i=0;i<del.length;i+=100){const b=del.slice(i,i+100),{error}=await sb.from(c.table).delete().in('id',b);if(error)throw error;b.forEach(id=>{delete m[id];delete V[id]})}
