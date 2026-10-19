@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><title>Digital Letter C Desa Kadakajaya V2</title>
+<link id="fav" rel="icon" href="data:,">
+<style>
+:root{--p:#14532d;--p2:#166534;--bg:#f4f7f5;--card:#fff;--line:#d7e2da;--txt:#17201a;--muted:#66736a;--danger:#b42318;--soft:#edf5ef}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--txt);font:14px "Segoe UI",Arial,sans-serif}
+header{background:linear-gradient(135deg,#123d24,#1f7a46);color:#fff;padding:20px 25px;display:flex;justify-content:space-between;gap:20px;align-items:center}
+header h1{margin:0;font-size:23px}header p{margin:5px 0 0;opacity:.9}.ver{padding:8px 12px;border:1px solid #ffffff55;border-radius:20px}
+.layout{display:flex;min-height:calc(100vh - 88px)}aside{width:245px;background:#123b25;padding:15px 12px;color:#fff}nav button{width:100%;border:0;background:transparent;color:#dcebe1;padding:11px 13px;text-align:left;border-radius:8px;margin:3px 0;cursor:pointer}nav button:hover,nav button.active{background:#ffffff18;color:#fff}
+main{flex:1;padding:23px;max-width:1600px;margin:auto;width:100%}.page{display:none}.page.active{display:block}.cards{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}.card,.panel{background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 2px 8px #123b2508}.card{padding:17px}.stat{font-size:27px;color:var(--p);font-weight:700;margin-top:6px}.panel{padding:18px;margin-top:16px}
+.toolbar{display:flex;gap:9px;flex-wrap:wrap;margin:15px 0}.btn{border:0;border-radius:8px;padding:10px 14px;font-weight:600;cursor:pointer}.primary{background:var(--p);color:#fff}.secondary{background:#e9f1eb;color:var(--p)}.danger{background:#fee4e2;color:var(--danger)}
+.search{padding:10px;border:1px solid #cbd8cf;border-radius:8px;min-width:280px;flex:1}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}.field label{display:block;font-size:12px;font-weight:600;color:var(--muted);margin-bottom:5px}.field input,.field select,.field textarea{width:100%;padding:9px;border:1px solid #cbd8cf;border-radius:7px;background:#fff}.field textarea{min-height:75px}
+table{width:100%;border-collapse:collapse;background:#fff}th,td{padding:9px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;font-size:13px}th{background:#f0f5f1;color:#31523c}.empty{text-align:center;padding:28px;color:var(--muted)}
+.notice{padding:12px 14px;background:var(--soft);border-left:4px solid var(--p);border-radius:6px}.warn{background:#fff8e6;border-left-color:#c68a00}
+.modal{display:none;position:fixed;inset:0;background:#0007;z-index:50;align-items:center;justify-content:center;padding:18px}.modal.show{display:flex}.modalbox{background:#fff;border-radius:12px;width:min(1100px,100%);max-height:92vh;overflow:auto;padding:20px}.modalhead{display:flex;justify-content:space-between;align-items:center}.close{border:0;border-radius:50%;width:34px;height:34px;cursor:pointer}.actions button{border:1px solid var(--line);background:#fff;border-radius:6px;padding:5px 8px;margin:2px;cursor:pointer}
+.section-title{font-weight:700;background:#eef5f0;padding:9px;border-radius:7px;margin:15px 0 9px}.rowbox{border:1px solid var(--line);border-radius:8px;padding:10px;margin:8px 0;background:#fbfdfb}.rowgrid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr 1fr 1fr auto;gap:7px;align-items:end}.rowgrid label{font-size:10px;color:var(--muted);display:block;margin-bottom:3px}.rowgrid input{width:100%;padding:7px;border:1px solid #ccd8cf;border-radius:6px}.summary{font-weight:700;margin-top:6px}.letterc-preview{overflow:auto}.letterc-table{min-width:1100px;border:1px solid #333}.letterc-table th,.letterc-table td{border:1px solid #555;text-align:center;font-size:11px;padding:5px}.letterc-table th{background:#eee;color:#111}.kv{display:grid;grid-template-columns:180px 1fr;border-bottom:1px solid var(--line);padding:8px}
+@media(max-width:1050px){.cards{grid-template-columns:repeat(2,1fr)}.rowgrid{grid-template-columns:repeat(3,1fr)}.grid{grid-template-columns:1fr 1fr}}
+@media(max-width:700px){.layout{display:block}aside{width:100%}.cards,.grid,.rowgrid{grid-template-columns:1fr}main{padding:13px}}
+.sk{font-family:"Times New Roman",Times,serif;color:#000;font-size:12px;line-height:1.45}
+.sk .kop{display:grid;grid-template-columns:85px 1fr 85px;align-items:center;text-align:center;border-bottom:3px double #000;padding-bottom:8px;margin-bottom:10px}.sk .kl img{height:75px;width:75px;object-fit:contain}.sk .kt .al{font-size:10.5px}
+.sk .kop b{font-size:15px;letter-spacing:.5px}.sk .kop div{font-size:12px}
+.sk h3{text-align:center;text-decoration:underline;margin:10px 0 2px;font-size:15px}.sk .no{text-align:center;margin-bottom:10px}
+.sk .idt td{border:0;padding:1px 6px;font-size:12px;vertical-align:top}
+.sk .bk{width:100%;border-collapse:collapse;margin:8px 0}.sk .bk th,.sk .bk td{border:1px solid #000;text-align:center;padding:3px 4px;font-size:11px;vertical-align:top}
+.sk .bk th{background:#eee;color:#000}.sk .bk td.r{text-align:right}.sk .bk tr.tot td{font-weight:700;background:#f6f6f6}.sk .bk td.mut{text-align:left;font-size:10.5px}
+.sk .ttd{display:flex;justify-content:space-between;margin-top:18px;page-break-inside:avoid}.sk .ttd div{width:260px;text-align:center}
+.sk .cat{font-size:10.5px;margin-top:10px}
+@page{size:330mm 215mm;margin:10mm 15mm}
+@media print{html,body{height:auto!important;min-height:0!important;background:#fff;margin:0}header,aside,.no-print{display:none!important}.layout{display:block;min-height:0!important}main{padding:0!important;margin:0!important;max-width:none;width:100%}.page{display:none!important}.page.active{display:block!important}.panel{border:0;box-shadow:none;padding:0;margin:0}
+.sk{font-size:11px;line-height:1.3}.sk p{margin:5px 0}.sk h3{margin:6px 0 1px}.sk .no{margin-bottom:6px}.sk .kop{padding-bottom:5px;margin-bottom:6px}.sk .kl img{height:62px;width:62px}.sk .kt{line-height:1.25}.sk .bk{margin:5px 0}.sk .bk th,.sk .bk td{padding:2px 4px;font-size:10.5px}.sk .ttd{margin-top:10px}.sk .idt td{font-size:11px;padding:0 6px}
+.sk .bk tr,.sk .ttd{break-inside:avoid;page-break-inside:avoid}.sk .bk thead{display:table-header-group}}
+</style>
+</head>
+<body>
+<header>
+<div style="display:flex;align-items:center;gap:14px"><img id="appLogo" alt="Logo" style="display:none;height:54px;width:54px;object-fit:contain;background:#fff;border-radius:10px;padding:3px"><div><h1 id="appTitle">DIGITAL LETTER C DESA</h1><p id="appSub"></p></div></div>
+<div class="ver">V2 • Struktur mengikuti Buku Fisik</div>
+</header>
+<div class="layout">
+<aside class="no-print"><nav>
+<button class="active" onclick="page('dashboard',this)">🏠 Dashboard</button>
+<button onclick="page('data',this)">📖 Data Letter C</button>
+<button onclick="page('mutasi',this)">🔄 Mutasi</button>
+<button onclick="page('cari',this)">🔎 Pencarian</button>
+<button onclick="page('cetak',this)">🖨️ Cetak Keterangan</button>
+<button onclick="page('laporan',this)">📊 Laporan</button>
+<button onclick="page('arsip',this)">🗂️ Arsip</button>
+<button onclick="page('backup',this)">💾 Backup & Restore</button>
+<button onclick="page('pengaturan',this)">⚙️ Pengaturan</button>
+</nav></aside>
+<main>
+<section id="dashboard" class="page active">
+<h2>Dashboard</h2>
+<div class="notice">V2 menyesuaikan struktur halaman fisik yang Anda kirim: <b>ATAS NAMA, NOMOR KOHIR, TEMPAT TINGGAL, HALAMAN</b>, lalu kelompok <b>SAWAH, DARAT, BANGUNAN</b> dan <b>MUTASI</b>.</div>
+<div class="cards">
+<div class="card">Buku/Entri C<div class="stat" id="sC">0</div></div>
+<div class="card">Sawah<div class="stat" id="sS">0</div></div>
+<div class="card">Darat<div class="stat" id="sD">0</div></div>
+<div class="card">Bangunan<div class="stat" id="sB">0</div></div>
+<div class="card">Mutasi<div class="stat" id="sM">0</div></div>
+</div>
+<div class="panel"><h3>Struktur Letter C V2</h3>
+<ul><li><b>Identitas:</b> Atas Nama, Nomor Kohir, Tempat Tinggal, Halaman.</li>
+<li><b>SAWAH:</b> No. Persil/No. Bidang, Kelas Desa, Kelas Nasional, Luas (m²), Pajak (Rp).</li>
+<li><b>DARAT:</b> No. Persil/No. Bidang, Kelas Desa, Kelas Nasional, Luas (m²), Pajak (Rp).</li>
+<li><b>BANGUNAN:</b> No. Persil/No. Bidang, Gol/Kelas, Luas (m²), Pajak (Rp).</li>
+<li><b>MUTASI:</b> catatan perubahan/riwayat yang tidak menghapus data asal.</li></ul></div>
+</section>
+
+<section id="data" class="page"><h2>Data Letter C</h2>
+<div class="toolbar no-print"><input id="q" class="search" placeholder="Cari Atas Nama, Kohir, Persil, Bidang, Blok..." oninput="renderData()"><button class="btn primary" onclick="openC()">＋ Tambah Buku/Entri C</button></div>
+<div class="panel"><div id="dataTable"></div></div></section>
+
+<section id="mutasi" class="page"><h2>Riwayat / Mutasi Letter C</h2>
+<div class="toolbar no-print"><select id="mFilter" class="search" onchange="renderMutasi()"></select><button class="btn primary" onclick="openMutasi()">＋ Tambah Mutasi</button></div>
+<div class="panel"><div id="mutasiTable"></div></div></section>
+
+<section id="cari" class="page"><h2>Pencarian Tanah</h2>
+<div class="panel"><input id="globalQ" class="search" style="width:100%" placeholder="Nomor Kohir / Atas Nama / Persil / Bidang / Blok..." oninput="renderSearch()"><div id="searchOut" style="margin-top:15px"></div></div></section>
+
+<section id="cetak" class="page">
+<div class="toolbar no-print"><select id="printSel" class="search" onchange="renderCertificate()"></select><input id="noSurat" class="search" style="min-width:200px;flex:none" placeholder="Nomor Surat" oninput="renderCertificate()"><label style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted)">Tanggal Surat<input id="tglSurat" type="date" class="search" style="min-width:150px;flex:none" oninput="renderCertificate()" onchange="renderCertificate()"></label><button class="btn primary" onclick="fitPrint();window.print()">🖨️ Cetak</button></div>
+<div class="panel" id="certificate"></div></section>
+
+<section id="laporan" class="page"><h2>Laporan / Rekap</h2>
+<div class="toolbar no-print"><button class="btn secondary" onclick="window.print()">🖨️ Cetak</button></div>
+<div class="panel" id="report"></div></section>
+
+<section id="arsip" class="page"><h2>Arsip Digital</h2>
+<div class="notice warn">V2 menyimpan metadata arsip. Untuk penyimpanan scan sebenarnya, tahap V3 dapat memakai folder server/database dengan hak akses.</div>
+<div class="toolbar no-print"><button class="btn primary" onclick="openArsip()">＋ Tambah Arsip</button></div>
+<div class="panel" id="arsipTable"></div></section>
+
+<section id="backup" class="page"><h2>Backup & Restore</h2>
+<div class="notice">Backup menghasilkan satu file JSON berisi data Letter C, baris Sawah/Darat/Bangunan, mutasi, dan metadata arsip.</div>
+<div class="toolbar no-print"><button class="btn primary" onclick="backup()">⬇️ Backup JSON</button><label class="btn secondary">⬆️ Restore JSON<input type="file" accept=".json" style="display:none" onchange="restore(this)"></label><button class="btn danger" onclick="resetDB()">Hapus Semua Data</button></div>
+<div class="panel" id="backupInfo"></div><div class="notice" id="storInfo" style="margin-top:10px">Memeriksa penyimpanan...</div><div class="notice warn">Data tersimpan di server Supabase. Paket gratis Supabase tidak punya backup otomatis — unduh <b>Backup JSON</b> secara rutin. <b>Restore</b> dan <b>Hapus Semua Data</b> hanya untuk admin dan berlaku untuk semua pengguna.</div></section>
+
+
+<section id="pengaturan" class="page"><h2>Pengaturan Desa</h2>
+<div class="notice">Data di sini dipakai untuk kop surat, nama kepala desa, judul aplikasi, logo di judul, dan favicon.</div>
+<div class="panel"><div class="grid">
+<div class="field"><label>Baris 1 Kop (Pemerintah Daerah)</label><input id="sPemda" placeholder="PEMERINTAH DAERAH KABUPATEN ..."></div>
+<div class="field"><label>Baris 2 Kop (Kecamatan)</label><input id="sKec" placeholder="KECAMATAN ..."></div>
+<div class="field"><label>Nama Desa</label><input id="sDesa" placeholder="Kadakajaya"></div>
+<div class="field"><label>Nama Kepala Desa</label><input id="sKades"></div>
+<div class="field" style="grid-column:span 2"><label>Alamat Kantor Desa</label><input id="sAlamat" placeholder="Jl. ... Desa ... Kec. ... Kode Pos ..."></div>
+<div class="field"><label>Logo Desa (PNG/JPG)</label><input id="sLogoFile" type="file" accept="image/*" onchange="pickLogo(this)"></div>
+<div class="field"><label>Pratinjau Logo</label><img id="sLogoPrev" alt="" style="display:none;height:80px;border:1px solid var(--line);border-radius:8px;padding:4px;background:#fff"><div id="sLogoEmpty" style="color:var(--muted)">Belum ada logo</div></div>
+</div>
+<div class="toolbar"><button class="btn primary" onclick="saveSettings()">💾 Simpan Pengaturan</button><button class="btn danger" onclick="clearLogo()">Hapus Logo</button></div></div></section>
+</main></div>
+
+<div id="modal" class="modal"><div class="modalbox"><div class="modalhead"><h3 id="mt">Form</h3><button class="close" onclick="closeM()">×</button></div><div id="mb"></div></div></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script src="config.js"></script>
+<script src="sb-core.js"></script>
+<script>
+const KEY='letterC_v2_kadakajaya';
+const DEF={pemda:'PEMERINTAH DAERAH KABUPATEN SUMEDANG',kec:'KECAMATAN TANJUNGSARI',desa:'Kadakajaya',alamat:'',kades:'',logo:''};
+let db={c:[],mutasi:[],arsip:[],settings:Object.assign({},DEF)};let tmpLogo=null;
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,8);
+const esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+const num=n=>Number(n||0).toLocaleString('id-ID');
+// ===== Penyimpanan: Supabase (multi-pengguna) =====
+function save(){SB.push();refresh()}
+function storageInfo(){const el=document.getElementById('storInfo');if(el)el.innerHTML='Data tersimpan di <b>server (Supabase)</b> dan disinkronkan langsung ke semua pengguna yang sedang membuka aplikasi.'}
+function page(id,b){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('nav button').forEach(x=>x.classList.remove('active'));b.classList.add('active');refresh()}
+function modal(t,b){mt.textContent=t;mb.innerHTML=b;modalEl().classList.add('show')}
+function modalEl(){return document.getElementById('modal')} function closeM(){modalEl().classList.remove('show')}
+function blankRow(type){return {id:uid(),persil:'',kelasDesa:'',kelasNasional:'',luas:0,pajak:0,golKelas:''}}
+function rowHTML(type,arr){return arr.map((r,i)=>type==='bangunan'?`<div class="rowbox"><div class="rowgrid">
+<div><label>No. Persil / No. Bidang</label><input data-t="${type}" data-i="${i}" data-k="persil" value="${esc(r.persil)}"></div>
+<div><label>Gol/Kelas</label><input data-t="${type}" data-i="${i}" data-k="golKelas" value="${esc(r.golKelas)}"></div>
+<div><label>Luas (m²)</label><input type="number" step="any" data-t="${type}" data-i="${i}" data-k="luas" value="${r.luas||0}"></div>
+<div><label>Pajak (Rp)</label><input type="number" step="any" data-t="${type}" data-i="${i}" data-k="pajak" value="${r.pajak||0}"></div>
+<div style="grid-column:span 2"><label>Keterangan</label><input data-t="${type}" data-i="${i}" data-k="ket" value="${esc(r.ket||'')}"></div>
+<button type="button" class="btn danger" onclick="this.closest('.rowbox').remove()">Hapus</button></div></div>`:
+`<div class="rowbox"><div class="rowgrid">
+<div><label>No. Persil / No. Bidang</label><input data-t="${type}" data-i="${i}" data-k="persil" value="${esc(r.persil)}"></div>
+<div><label>Kelas Desa</label><input data-t="${type}" data-i="${i}" data-k="kelasDesa" value="${esc(r.kelasDesa)}"></div>
+<div><label>Kelas Nasional</label><input data-t="${type}" data-i="${i}" data-k="kelasNasional" value="${esc(r.kelasNasional)}"></div>
+<div><label>Luas (m²)</label><input type="number" step="any" data-t="${type}" data-i="${i}" data-k="luas" value="${r.luas||0}"></div>
+<div><label>Pajak (Rp)</label><input type="number" step="any" data-t="${type}" data-i="${i}" data-k="pajak" value="${r.pajak||0}"></div>
+<div><label>Keterangan</label><input data-t="${type}" data-i="${i}" data-k="ket" value="${esc(r.ket||'')}"></div>
+<button type="button" class="btn danger" onclick="this.closest('.rowbox').remove()">Hapus</button></div></div>`).join('')}
+function openC(id=''){let x=db.c.find(a=>a.id===id)||{id:'',atasNama:'',kohir:'',tempatTinggal:'',halaman:'',sawah:[],darat:[],bangunan:[],mutasiCatatan:'',keterangan:''};
+let saw=x.sawah.length?x.sawah:[blankRow('sawah')], dar=x.darat.length?x.darat:[blankRow('darat')], ban=x.bangunan.length?x.bangunan:[blankRow('bangunan')];
+modal(id?'Edit Data Letter C':'Tambah Data Letter C',`<form id="cForm" onsubmit="event.preventDefault();saveC('${id}')">
+<div class="grid"><div class="field"><label>Atas Nama *</label><input id="atas" required value="${esc(x.atasNama)}"></div><div class="field"><label>Nomor Kohir *</label><input id="kohir" required value="${esc(x.kohir)}"></div><div class="field"><label>Tempat Tinggal</label><input id="tinggal" value="${esc(x.tempatTinggal)}"></div><div class="field"><label>Halaman</label><input id="halaman" value="${esc(x.halaman)}"></div></div>
+<div class="section-title">BUMI — SAWAH</div><div id="sawahRows">${rowHTML('sawah',saw)}</div><button type="button" class="btn secondary" onclick="addRow('sawah')">＋ Tambah Baris Sawah</button>
+<div class="section-title">BUMI — DARAT</div><div id="daratRows">${rowHTML('darat',dar)}</div><button type="button" class="btn secondary" onclick="addRow('darat')">＋ Tambah Baris Darat</button>
+<div class="section-title">BANGUNAN</div><div id="bangunanRows">${rowHTML('bangunan',ban)}</div><button type="button" class="btn secondary" onclick="addRow('bangunan')">＋ Tambah Baris Bangunan</button>
+<div class="section-title">Keterangan / Catatan</div><div class="grid"><div class="field" style="grid-column:1/-1"><textarea id="ket">${esc(x.keterangan)}</textarea></div></div>
+<div class="toolbar"><button class="btn primary">Simpan Data Letter C</button><button type="button" class="btn secondary" onclick="closeM()">Batal</button></div></form>`)}
+function addRow(type){let d=document.getElementById(type+'Rows');let r=blankRow(type);d.insertAdjacentHTML('beforeend',rowHTML(type,[r]))}
+function readRows(type){return [...document.querySelectorAll('#'+type+'Rows .rowbox')].map(box=>{let o=blankRow(type);box.querySelectorAll('[data-k]').forEach(i=>{let k=i.dataset.k;o[k]=['luas','pajak'].includes(k)?Number(i.value||0):i.value});return o})}
+function saveC(old){let x={id:old||uid(),atasNama:atas.value.trim(),kohir:kohir.value.trim(),tempatTinggal:tinggal.value.trim(),halaman:halaman.value.trim(),sawah:readRows('sawah'),darat:readRows('darat'),bangunan:readRows('bangunan'),keterangan:ket.value.trim()};if(!old&&db.c.some(a=>a.kohir===x.kohir&&a.atasNama===x.atasNama)&&!confirm('Kohir dengan nama yang sama sudah ada. Tetap simpan sebagai data baru?'))return;let i=db.c.findIndex(a=>a.id===old);if(i>=0)db.c[i]=x;else db.c.push(x);save();closeM()}
+function totalRows(x,t,k){return (x[t]||[]).reduce((a,r)=>a+Number(r[k]||0),0)}
+function renderData(){let q=(document.getElementById('q')?.value||'').toLowerCase();let a=db.c.filter(x=>(x.atasNama+' '+x.kohir+' '+x.tempatTinggal+' '+JSON.stringify(x.sawah)+' '+JSON.stringify(x.darat)+' '+JSON.stringify(x.bangunan)).toLowerCase().includes(q));
+dataTable.innerHTML=a.length?`<table><tr><th>Kohir</th><th>Atas Nama</th><th>Tempat Tinggal</th><th>Hal.</th><th>Sawah</th><th>Darat</th><th>Bangunan</th><th>Aksi</th></tr>${a.map(x=>`<tr><td><b>${esc(x.kohir)}</b></td><td>${esc(x.atasNama)}</td><td>${esc(x.tempatTinggal)}</td><td>${esc(x.halaman)}</td><td>${x.sawah.length} baris<br>${num(totalRows(x,'sawah','luas'))} m²</td><td>${x.darat.length} baris<br>${num(totalRows(x,'darat','luas'))} m²</td><td>${x.bangunan.length} baris<br>${num(totalRows(x,'bangunan','luas'))} m²</td><td class="actions"><button onclick="detail('${x.id}')">Detail</button><button onclick="openC('${x.id}')">Edit</button><button onclick="delC('${x.id}')">Hapus</button></td></tr>`).join('')}</table>`:'<div class="empty">Belum ada data Letter C.</div>'}
+function delC(id){if(confirm('Hapus entri Letter C dan seluruh mutasi terkait?')){db.c=db.c.filter(x=>x.id!==id);db.mutasi=db.mutasi.filter(x=>x.cId!==id);db.arsip=db.arsip.filter(x=>x.cId!==id);save()}}
+function detail(id){let x=db.c.find(a=>a.id===id),ms=db.mutasi.filter(m=>m.cId===id);let rows=(t,label)=>`<h4>${label}</h4><table><tr><th>No. Persil/Bidang</th><th>Kelas</th><th>Luas</th><th>Pajak</th></tr>${x[t].map(r=>`<tr><td>${esc(r.persil)}</td><td>${t==='bangunan'?esc(r.golKelas):esc(r.kelasDesa)+' / '+esc(r.kelasNasional)}</td><td>${num(r.luas)} m²</td><td>Rp ${num(r.pajak)}</td></tr>`).join('')}</table>`;modal('Detail Letter C — '+esc(x.kohir),`<div class="kv"><b>Atas Nama</b><span>${esc(x.atasNama)}</span></div><div class="kv"><b>Nomor Kohir</b><span>${esc(x.kohir)}</span></div><div class="kv"><b>Tempat Tinggal</b><span>${esc(x.tempatTinggal)}</span></div><div class="kv"><b>Halaman</b><span>${esc(x.halaman)}</span></div>${rows('sawah','SAWAH')}${rows('darat','DARAT')}${rows('bangunan','BANGUNAN')}<h4>Riwayat Mutasi</h4>${ms.length?'<table><tr><th>Tanggal</th><th>Jenis</th><th>Dari</th><th>Kepada</th><th>Luas</th><th>Dasar</th></tr>'+ms.map(m=>`<tr><td>${esc(m.tanggal)}</td><td>${esc(m.jenis)}</td><td>${esc(m.dari)}</td><td>${esc(m.kepada)}</td><td>${num(m.luas)} m²</td><td>${esc(m.dasar)}</td></tr>`).join('')+'</table>':'<p class="empty">Belum ada mutasi.</p>'}`)}
+function selectOpts(){return '<option value="">-- pilih Kohir / Nama --</option>'+db.c.map(x=>`<option value="${x.id}">${esc(x.kohir)} — ${esc(x.atasNama)}</option>`).join('')}
+function renderSelects(){['mFilter','printSel'].forEach(id=>{let e=document.getElementById(id);if(e){let old=e.value;e.innerHTML=selectOpts();e.value=old}})}
+function openMutasi(){if(!db.c.length){alert('Tambahkan data Letter C terlebih dahulu.');return}modal('Tambah Mutasi / Riwayat',`<form onsubmit="event.preventDefault();saveMutasi()"><div class="grid"><div class="field"><label>Letter C *</label><select id="mc">${db.c.map(x=>`<option value="${x.id}">${esc(x.kohir)} — ${esc(x.atasNama)}</option>`).join('')}</select></div><div class="field"><label>Tanggal</label><input id="mtgl" type="date" value="${new Date().toISOString().slice(0,10)}"></div><div class="field"><label>Jenis Mutasi</label><select id="mjenis"><option>Jual Beli</option><option>Waris</option><option>Hibah</option><option>Wakaf</option><option>Pemecahan</option><option>Penggabungan</option><option>Perubahan Nama</option><option>Perubahan Luas</option><option>Lainnya</option></select></div><div class="field"><label>Dari</label><input id="mdari"></div><div class="field"><label>Kepada</label><input id="mkepada"></div><div class="field"><label>Luas Mutasi (m²)</label><input id="mluas" type="number" min="0" step="any"></div><div class="field"><label>Nomor / Dasar</label><input id="mdasar"></div><div class="field" style="grid-column:1/-1"><label>Keterangan</label><textarea id="mket"></textarea></div></div><div class="toolbar"><button class="btn primary">Simpan Mutasi</button></div></form>`)}
+function saveMutasi(){db.mutasi.push({id:uid(),cId:mc.value,tanggal:mtgl.value,jenis:mjenis.value,dari:mdari.value,kepada:mkepada.value,luas:Number(mluas.value||0),dasar:mdasar.value,ket:mket.value});save();closeM()}
+function renderMutasi(){let f=document.getElementById('mFilter')?.value||'';let a=db.mutasi.filter(x=>!f||x.cId===f);mutasiTable.innerHTML=a.length?`<table><tr><th>Tanggal</th><th>Kohir</th><th>Jenis</th><th>Dari</th><th>Kepada</th><th>Luas</th><th>Dasar</th><th></th></tr>${a.map(m=>{let x=db.c.find(c=>c.id===m.cId)||{};return `<tr><td>${esc(m.tanggal)}</td><td>${esc(x.kohir)}</td><td>${esc(m.jenis)}</td><td>${esc(m.dari)}</td><td>${esc(m.kepada)}</td><td>${num(m.luas)} m²</td><td>${esc(m.dasar)}</td><td><button onclick="delMut('${m.id}')">Hapus</button></td></tr>`}).join('')}</table>`:'<div class="empty">Belum ada mutasi.</div>'}
+function delMut(id){if(confirm('Hapus mutasi ini?')){db.mutasi=db.mutasi.filter(x=>x.id!==id);save()}}
+function renderSearch(){let q=(document.getElementById('globalQ')?.value||'').toLowerCase().trim();if(!q){searchOut.innerHTML='<div class="empty">Masukkan kata pencarian.</div>';return}let a=db.c.filter(x=>JSON.stringify(x).toLowerCase().includes(q));searchOut.innerHTML=a.length?`<table><tr><th>Kohir</th><th>Atas Nama</th><th>Tempat Tinggal</th><th>Total Luas</th><th></th></tr>${a.map(x=>`<tr><td>${esc(x.kohir)}</td><td>${esc(x.atasNama)}</td><td>${esc(x.tempatTinggal)}</td><td>${num(totalRows(x,'sawah','luas')+totalRows(x,'darat','luas')+totalRows(x,'bangunan','luas'))} m²</td><td><button onclick="detail('${x.id}')">Buka</button></td></tr>`).join('')}</table>`:'<div class="empty">Data tidak ditemukan.</div>'}
+function renderCertificate(){let id=document.getElementById('printSel')?.value;if(!id){certificate.innerHTML='<div class="empty">Pilih Kohir untuk menampilkan Surat Keterangan.</div>';return}
+let x=db.c.find(a=>a.id===id),ms=db.mutasi.filter(m=>m.cId===id);if(!x)return;
+const S=db.settings,noS=(document.getElementById('noSurat')?.value||'').trim();
+const n=Math.max(x.sawah.length,x.darat.length,x.bangunan.length,1),d2=v=>Number(v||0).toLocaleString('id-ID',{minimumFractionDigits:2,maximumFractionDigits:2});
+const emp=r=>!r||(!r.persil&&!r.luas&&!r.pajak);
+let body='';for(let i=0;i<n;i++){let s=x.sawah[i],d=x.darat[i],b=x.bangunan[i];
+let sc=emp(s)?'<td></td><td></td><td></td><td></td><td></td>':`<td>${esc(s.persil)}</td><td>${esc(s.kelasDesa)}</td><td>${esc(s.kelasNasional)}</td><td class="r">${d2(s.luas)}</td><td class="r">${d2(s.pajak)}</td>`;
+let dc=emp(d)?'<td></td><td></td><td></td><td></td><td></td>':`<td>${esc(d.persil)}</td><td>${esc(d.kelasDesa)}</td><td>${esc(d.kelasNasional)}</td><td class="r">${d2(d.luas)}</td><td class="r">${d2(d.pajak)}</td>`;
+let bc=emp(b)?'<td></td><td></td><td></td><td></td>':`<td>${esc(b.persil)}</td><td>${esc(b.golKelas)}</td><td class="r">${d2(b.luas)}</td><td class="r">${d2(b.pajak)}</td>`;
+let mc=i===0?`<td class="mut" rowspan="${n+1}">${ms.length?ms.map(m=>`${esc(m.tanggal)} — ${esc(m.jenis)}${m.dari?' dari '+esc(m.dari):''}${m.kepada?' kepada '+esc(m.kepada):''}${m.luas?' ('+d2(m.luas)+' m²)':''}${m.dasar?' ['+esc(m.dasar)+']':''}`).join('<br>'):'-'}</td>`:'';
+body+=`<tr>${sc}${dc}${bc}${mc}</tr>`}
+const T=(t,k)=>d2(totalRows(x,t,k));
+body+=`<tr class="tot"><td colspan="3">Jumlah</td><td class="r">${T('sawah','luas')}</td><td class="r">${T('sawah','pajak')}</td><td colspan="3">Jumlah</td><td class="r">${T('darat','luas')}</td><td class="r">${T('darat','pajak')}</td><td colspan="2">Jumlah</td><td class="r">${T('bangunan','luas')}</td><td class="r">${T('bangunan','pajak')}</td></tr>`;
+const tv=document.getElementById('tglSurat')?.value,td=tv?new Date(tv+'T00:00:00'):new Date(),tl=td.toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'});
+const totLuas=totalRows(x,'sawah','luas')+totalRows(x,'darat','luas')+totalRows(x,'bangunan','luas'),totPajak=totalRows(x,'sawah','pajak')+totalRows(x,'darat','pajak')+totalRows(x,'bangunan','pajak');
+certificate.innerHTML=`<div class="sk"><div class="kop"><div class="kl">${S.logo?`<img src="${S.logo}" alt="">`:''}</div><div class="kt"><b>${esc((S.pemda||'').toUpperCase())}</b><div>${esc((S.kec||'').toUpperCase())}</div><b>PEMERINTAH DESA ${esc(S.desa.toUpperCase())}</b>${S.alamat?`<div class="al">${esc(S.alamat)}</div>`:''}</div><div class="kl"></div></div>
+<h3>SURAT KETERANGAN DATA LETTER C DESA</h3><div class="no">Nomor : ${noS?esc(noS):'.........  /  .........  /  .........  /  '+td.getFullYear()}</div>
+<p>Yang bertanda tangan di bawah ini, Kepala Desa ${esc(S.desa)}${S.kec?', '+esc(S.kec.toLowerCase().replace(/(^|\s)\S/g,m=>m.toUpperCase())):''}, menerangkan bahwa berdasarkan Buku Letter C Desa ${esc(S.desa)} terdapat catatan sebagai berikut:</p>
+<table class="idt"><tr><td>Atas Nama</td><td>:</td><td><b>${esc(x.atasNama)}</b></td><td style="width:40px"></td><td>Nomor Kohir</td><td>:</td><td><b>${esc(x.kohir)}</b></td></tr>
+<tr><td>Tempat Tinggal</td><td>:</td><td>${esc(x.tempatTinggal)}</td><td></td><td>Halaman</td><td>:</td><td>${esc(x.halaman)}</td></tr></table>
+<table class="bk"><thead><tr><th colspan="15" style="font-size:12px">BUMI &amp; BANGUNAN</th></tr>
+<tr><th colspan="5">SAWAH</th><th colspan="5">DARAT</th><th colspan="4">BANGUNAN</th><th rowspan="3">MUTASI</th></tr>
+<tr><th rowspan="2">No. Persil &amp; No. Bidang</th><th colspan="2">Kelas</th><th rowspan="2">Luas (m²)</th><th rowspan="2">Pajak (Rp)</th><th rowspan="2">No. Persil &amp; No. Bidang</th><th colspan="2">Kelas</th><th rowspan="2">Luas (m²)</th><th rowspan="2">Pajak (Rp)</th><th rowspan="2">No. Persil &amp; No. Bidang</th><th rowspan="2">Gol/ Kelas</th><th rowspan="2">Luas (m²)</th><th rowspan="2">Pajak (Rp)</th></tr>
+<tr><th>Desa</th><th>Nasional</th><th>Desa</th><th>Nasional</th></tr>
+<tr style="font-size:9px"><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th>9</th><th>10</th><th>11</th><th>12</th><th>13</th><th>14</th><th>15</th></tr></thead><tbody>
+${body}</tbody></table>
+<p>Jumlah keseluruhan luas tercatat <b>${d2(totLuas)} m²</b> dengan jumlah pajak <b>Rp ${d2(totPajak)}</b>.${x.keterangan?'<br>Keterangan: '+esc(x.keterangan):''}</p>
+<p>Demikian surat keterangan ini dibuat untuk dipergunakan sebagaimana mestinya.</p>
+<div class="ttd" style="justify-content:flex-end"><div>${esc(S.desa)}, ${tl}<br>Kepala Desa ${esc(S.desa)}<br><br><br><br><b><u>${S.kades?esc(S.kades):'________________________'}</u></b></div></div></div>`}
+function renderReport(){let a=db.c;report.innerHTML=`<h3>Rekapitulasi Letter C Desa Kadakajaya</h3><p>Total entri: <b>${a.length}</b> • Sawah: <b>${num(a.reduce((s,x)=>s+totalRows(x,'sawah','luas'),0))} m²</b> • Darat: <b>${num(a.reduce((s,x)=>s+totalRows(x,'darat','luas'),0))} m²</b> • Bangunan: <b>${num(a.reduce((s,x)=>s+totalRows(x,'bangunan','luas'),0))} m²</b></p><table><tr><th>Kohir</th><th>Atas Nama</th><th>Jumlah Baris Sawah</th><th>Jumlah Baris Darat</th><th>Jumlah Baris Bangunan</th><th>Total Mutasi</th></tr>${a.map(x=>`<tr><td>${esc(x.kohir)}</td><td>${esc(x.atasNama)}</td><td>${x.sawah.length}</td><td>${x.darat.length}</td><td>${x.bangunan.length}</td><td>${db.mutasi.filter(m=>m.cId===x.id).length}</td></tr>`).join('')||'<tr><td colspan="6" class="empty">Belum ada data.</td></tr>'}</table>`}
+function openArsip(){if(!db.c.length){alert('Tambahkan Letter C terlebih dahulu.');return}modal('Tambah Metadata Arsip',`<form onsubmit="event.preventDefault();saveArsip()"><div class="grid"><div class="field"><label>Letter C</label><select id="ac">${db.c.map(x=>`<option value="${x.id}">${esc(x.kohir)} — ${esc(x.atasNama)}</option>`).join('')}</select></div><div class="field"><label>Jenis Dokumen</label><select id="aj"><option>Scan Buku Letter C</option><option>Jual Beli</option><option>Waris</option><option>Hibah</option><option>Wakaf</option><option>Dokumen Lainnya</option></select></div><div class="field"><label>Nama File / Referensi</label><input id="af"></div><div class="field"><label>Tanggal</label><input id="at" type="date"></div><div class="field" style="grid-column:1/-1"><label>Keterangan</label><textarea id="ak"></textarea></div></div><div class="toolbar"><button class="btn primary">Simpan</button></div></form>`)}
+function saveArsip(){db.arsip.push({id:uid(),cId:ac.value,jenis:aj.value,file:af.value,tanggal:at.value,ket:ak.value});save();closeM()}
+function renderArsip(){arsipTable.innerHTML=db.arsip.length?`<table><tr><th>Kohir</th><th>Jenis</th><th>File/Referensi</th><th>Tanggal</th><th>Keterangan</th><th></th></tr>${db.arsip.map(a=>{let x=db.c.find(c=>c.id===a.cId)||{};return `<tr><td>${esc(x.kohir)}</td><td>${esc(a.jenis)}</td><td>${esc(a.file)}</td><td>${esc(a.tanggal)}</td><td>${esc(a.ket)}</td><td><button onclick="delArsip('${a.id}')">Hapus</button></td></tr>`}).join('')}</table>`:'<div class="empty">Belum ada arsip.</div>'}
+function delArsip(id){if(confirm('Hapus metadata arsip?')){db.arsip=db.arsip.filter(x=>x.id!==id);save()}}
+function backup(){let b=new Blob([JSON.stringify(db,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='backup-digital-letter-c-kadakajaya-v2-'+new Date().toISOString().slice(0,10)+'.json';a.click();URL.revokeObjectURL(a.href)}
+function restore(inp){let f=inp.files[0];if(!f)return;if(!SB.isAdmin()){inp.value='';return alert('Hanya admin yang boleh melakukan Restore (data di server akan diganti untuk semua pengguna).')}let r=new FileReader();r.onload=()=>{try{let x=JSON.parse(r.result);if(!x.c||!x.mutasi||!x.arsip)throw 0;if(confirm('Restore mengganti database V2 saat ini. Lanjutkan?')){db=x;db.settings=Object.assign({},DEF,x.settings||{});save();alert('Restore berhasil.')}}catch(e){alert('Backup tidak valid atau bukan database V2.')}};r.readAsText(f)}
+async function resetDB(){if(!SB.isAdmin())return alert('Hanya admin yang boleh menghapus seluruh data.');if(!confirm('HAPUS SELURUH data Letter C, mutasi, dan arsip di SERVER untuk SEMUA pengguna? Pastikan sudah Backup JSON.'))return;if(prompt('Ketik HAPUS untuk melanjutkan')!=='HAPUS')return;db.c=[];db.mutasi=[];db.arsip=[];save();alert('Seluruh data dihapus.')}
+
+function pickLogo(inp){let f=inp.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{let im=new Image();im.onload=()=>{let m=300,k=Math.min(1,m/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);c.getContext('2d').drawImage(im,0,0,c.width,c.height);tmpLogo=c.toDataURL('image/png');showLogoPrev(tmpLogo)};im.src=r.result};r.readAsDataURL(f)}
+function showLogoPrev(u){sLogoPrev.src=u||'';sLogoPrev.style.display=u?'block':'none';sLogoEmpty.style.display=u?'none':'block'}
+function clearLogo(){if(!confirm('Hapus logo?'))return;tmpLogo='';sLogoFile.value='';showLogoPrev('');db.settings.logo='';save()}
+function saveSettings(){let S=db.settings;S.pemda=sPemda.value.trim();S.kec=sKec.value.trim();S.desa=sDesa.value.trim()||'Kadakajaya';S.kades=sKades.value.trim();S.alamat=sAlamat.value.trim();if(tmpLogo!==null)S.logo=tmpLogo;tmpLogo=null;save();alert('Pengaturan desa tersimpan.')}
+function applySettings(){let S=db.settings,D=S.desa.toUpperCase();document.getElementById('appTitle').textContent='DIGITAL LETTER C DESA '+D;document.getElementById('appSub').textContent='Sistem Administrasi dan Digitalisasi Letter C Desa '+S.desa;document.title='Digital Letter C Desa '+S.desa;
+let lg=document.getElementById('appLogo');if(S.logo){lg.src=S.logo;lg.style.display='block'}else lg.style.display='none';
+document.getElementById('fav').href=S.logo||'data:image/svg+xml,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">📖</text></svg>');
+if(document.activeElement&&document.activeElement.closest&&document.activeElement.closest('#pengaturan'))return;
+sPemda.value=S.pemda;sKec.value=S.kec;sDesa.value=S.desa;sKades.value=S.kades;sAlamat.value=S.alamat;showLogoPrev(tmpLogo!==null?tmpLogo:S.logo)}
+
+try{localStorage.removeItem(KEY+'_apikey');localStorage.removeItem(KEY+'_model')}catch(e){}
+function refresh(){applySettings();sC.textContent=db.c.length;sS.textContent=db.c.reduce((a,x)=>a+x.sawah.length,0);sD.textContent=db.c.reduce((a,x)=>a+x.darat.length,0);sB.textContent=db.c.reduce((a,x)=>a+x.bangunan.length,0);sM.textContent=db.mutasi.length;renderData();renderSelects();renderMutasi();renderSearch();renderCertificate();renderReport();renderArsip();backupInfo.innerHTML='<b>Database server (Supabase)</b><br>Entri C: '+db.c.length+' • Baris Sawah: '+db.c.reduce((a,x)=>a+x.sawah.length,0)+' • Baris Darat: '+db.c.reduce((a,x)=>a+x.darat.length,0)+' • Baris Bangunan: '+db.c.reduce((a,x)=>a+x.bangunan.length,0)+' • Mutasi: '+db.mutasi.length}
+function fitPrint(){let el=document.querySelector('#certificate .sk');if(!el)return;resetFit();const mm=96/25.4,W=300*mm,H=195*mm;el.style.width=W+'px';document.body.classList.add('fitprobe');let h=el.scrollHeight;document.body.classList.remove('fitprobe');
+if(h>H){let z=Math.max(.7,(H/h)*.97);if(H/h>=.7){el.style.zoom=z;el.style.width=(W/z)+'px'}else{el.style.width=''}}else{el.style.width=''}}
+function resetFit(){let el=document.querySelector('#certificate .sk');if(el){el.style.zoom='';el.style.width=''}}
+window.addEventListener('beforeprint',fitPrint);window.addEventListener('afterprint',resetFit);
+document.getElementById('tglSurat').value=new Date().toISOString().slice(0,10);
+
+SB.start({module:'letterc',title:'Digital Letter C Desa Kadakajaya',
+ collections:[
+  {key:'c',table:'letter_c',mod:'letterc',rt:1,get:()=>db.c,set:a=>db.c=a},
+  {key:'mutasi',table:'mutasi',mod:'letterc',rt:1,get:()=>db.mutasi,set:a=>db.mutasi=a},
+  {key:'arsip',table:'arsip',mod:'letterc',rt:1,get:()=>db.arsip,set:a=>db.arsip=a}],
+ singles:[{key:'settings',table:'pengaturan',id:'letterc',mod:'letterc',rt:1,get:()=>db.settings,set:o=>db.settings=Object.assign({},DEF,o)}],
+ onData:()=>{try{refresh()}catch(e){console.error(e)}},
+ onReady:()=>{refresh();storageInfo()}});
+</script>
+</body>
+</html>
