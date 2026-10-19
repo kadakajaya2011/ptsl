@@ -6,7 +6,7 @@
 @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12161c;--c:#1b212b;--t:#e8ebf0;--m:#98a2b3;--b:#333b48;--p:#2dd4bf;--d:#f97066}}
 :root[data-theme="dark"]{--bg:#12161c;--c:#1b212b;--t:#e8ebf0;--m:#98a2b3;--b:#333b48;--p:#2dd4bf;--d:#f97066}
 *{box-sizing:border-box}html,body{height:100%}body{display:flex;flex-direction:column;overflow:hidden;margin:0;background:var(--bg);color:var(--t);font:14px/1.45 system-ui,Segoe UI,Arial,sans-serif}
-header{display:flex;align-items:center;gap:8px;flex:none;padding:8px 14px;background:var(--p);color:#fff}header h1{margin:0;font-size:16px}header small{opacity:.85}
+header{display:flex;flex-wrap:wrap;align-items:center;gap:8px;flex:none;padding:8px 14px;background:var(--p);color:#fff}header h1{margin:0;font-size:16px}header small{opacity:.85}
 .w{flex:1;min-height:0;display:flex;flex-direction:column;width:100%;padding:10px 14px}#view{flex:1;min-height:0;display:flex;flex-direction:column}
 .tabs{flex:none;display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap}
 .tabs button{padding:8px 14px;border:1px solid var(--b);background:var(--c);color:var(--t);border-radius:8px;cursor:pointer}
@@ -72,7 +72,7 @@ body.ppb #pbp .pbpg:last-child{break-after:auto;page-break-after:auto}
 body.ppb{margin:0}
 }
 </style></head><body>
-<header><div><h1>Pengajuan PTSL — Desa Kadakajaya</h1><small>Kec. Tanjungsari, Kab. Sumedang</small></div><span style="flex:1"></span><button class="btn s" onclick="dbExp()">Ekspor DB (JSON)</button><button class="btn s" onclick="dbImp()">Impor DB (JSON)</button></header>
+<header><div><h1>Pengajuan PTSL — Desa Kadakajaya</h1><small>Kec. Tanjungsari, Kab. Sumedang</small></div><span style="flex:1"></span><button class="btn s" onclick="dbExp()">Ekspor DB (JSON)</button><button class="btn s" onclick="dbImp()">Impor DB (JSON)</button><span id="sbmenu"></span></header>
 <div class="w">
 <div id="pt"></div><div class="tabs" id="tabs"></div>
 <div id="view"></div>

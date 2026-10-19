@@ -12,8 +12,18 @@ const css=`#sbgate{position:fixed;inset:0;z-index:99999;background:#0f2a1b;displ
 .sbbox input{width:100%;padding:10px;margin:5px 0;border:1px solid #c9d6cd;border-radius:8px;font-size:14px;box-sizing:border-box}
 .sbrow{display:flex;gap:8px;margin:8px 0}.sbb{flex:1;padding:9px 12px;border:1px solid #14532d;background:#fff;color:#14532d;border-radius:8px;cursor:pointer;font-size:14px}.sbb.p{background:#14532d;color:#fff}
 .sbmsg{background:#fff7e0;border:1px solid #f0d98a;border-radius:8px;padding:9px;margin:8px 0;font-size:13px}.sbbox a{color:#166534;font-size:13px;cursor:pointer}
-#sbbar{position:fixed;right:10px;bottom:10px;z-index:9999;background:#123b25;color:#fff;border-radius:22px;padding:6px 12px;font:12px Segoe UI,Arial,sans-serif;display:flex;gap:10px;align-items:center;box-shadow:0 3px 14px #0006;max-width:96vw;flex-wrap:wrap}
-#sbbar button,#sbbar a{background:#ffffff22;color:#fff;border:0;border-radius:12px;padding:4px 9px;cursor:pointer;text-decoration:none;font-size:12px}#sbbar .bad{color:#ffb4a8}
+#sbbar{position:fixed;right:12px;bottom:12px;z-index:9999;font:13px Segoe UI,Arial,sans-serif}
+#sbfab{width:38px;height:38px;border-radius:50%;border:0;background:#123b25;color:#fff;font-size:17px;cursor:pointer;box-shadow:0 3px 12px #0005;opacity:.55;position:relative;display:flex;align-items:center;justify-content:center;padding:0}#sbfab:hover,#sbbar.open #sbfab{opacity:1}#sbfab.bad{background:#a12b1a;opacity:1}
+#sbfab i{position:absolute;right:1px;top:1px;font-size:9px;font-style:normal;line-height:1}
+#sbpanel{display:none;position:absolute;right:0;bottom:46px;width:min(270px,88vw);background:#fff;color:#17201a;border-radius:12px;box-shadow:0 8px 30px #0005;padding:12px}#sbbar.open #sbpanel{display:block}
+#sbpanel .who{font-weight:600}#sbpanel .rl{color:#66736a;font-size:12px;margin-bottom:6px}#sbpanel #sbst{font-size:12px;color:#14532d;margin:4px 0 8px;word-break:break-word}#sbpanel #sbst.bad{color:#b3261e}
+#sbpanel .mi{display:block;width:100%;box-sizing:border-box;text-align:left;background:#f3f7f4;color:#14532d;border:0;border-radius:8px;padding:8px 10px;margin-top:5px;cursor:pointer;text-decoration:none;font:13px Segoe UI,Arial,sans-serif}#sbpanel .mi:hover{background:#e0eee5}#sbpanel .mi.out{color:#a12b1a}
+#sbmenu .sbm{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font:13px Segoe UI,Arial,sans-serif;color:#fff}
+#sbmenu .sbi{white-space:nowrap}#sbmenu #sbst{font-size:12px;opacity:.85;color:#dcebe1}#sbmenu #sbst.bad{color:#ffb4a8;opacity:1}
+#sbmenu .mi{display:inline-block;background:#ffffff22;color:#fff;border:0;border-radius:8px;padding:6px 10px;cursor:pointer;text-decoration:none;font:13px Segoe UI,Arial,sans-serif}#sbmenu .mi:hover{background:#ffffff40}
+aside #sbmenu{margin-top:14px;padding-top:12px;border-top:1px solid #ffffff30}aside #sbmenu .sbm{flex-direction:column;align-items:stretch;gap:5px}aside #sbmenu .mi{text-align:left;padding:10px 13px;display:block}aside #sbmenu .sbi{margin-bottom:2px;white-space:normal}
+@media print{#sbmenu{display:none!important}}
+@media print{#sbbar,#sbtoast,#sbu{display:none!important}}
 #sbtoast{position:fixed;left:50%;transform:translateX(-50%);bottom:60px;z-index:100000;background:#222;color:#fff;padding:10px 16px;border-radius:10px;max-width:90vw;font:13px Segoe UI,Arial,sans-serif;display:none}
 #sbu{position:fixed;inset:0;z-index:99998;background:#000a;display:flex;align-items:flex-start;justify-content:center;padding:20px;overflow:auto}
 #sbu .pn{background:#fff;color:#17201a;border-radius:12px;padding:16px;width:min(1100px,98vw);font:13px Segoe UI,Arial,sans-serif}#sbu table{border-collapse:collapse;width:100%}#sbu th,#sbu td{border-bottom:1px solid #e3ebe5;padding:5px 6px;text-align:left;vertical-align:middle}#sbu select,#sbu input[type=text]{padding:4px;font-size:12px}
@@ -26,7 +36,7 @@ SB.akses=m=>!prof||!prof.aktif?'tidak':prof.role==='admin'?'tulis':((prof.akses|
 SB.canWrite=m=>SB.akses(m)==='tulis';SB.isAdmin=()=>!!prof&&prof.role==='admin'&&prof.aktif;
 SB.user=()=>prof;
 SB.pending=()=>waiters.length>0||busy>0;
-function status(t,bad){const e=$('#sbst');if(e){e.textContent=t;e.className=bad?'bad':''}if(SB.onStatus)SB.onStatus(t,bad)}
+function status(t,bad){const e=$('#sbst');if(e){e.textContent=t;e.className=bad?'bad':''}const f=$('#sbfab');if(f)f.classList.toggle('bad',!!bad);if(SB.onStatus)SB.onStatus(t,bad)}
 /* ---------- login ---------- */
 function out(){sb.auth.signOut().finally(()=>location.reload())}
 function msgScreen(m,logout){gate(`<div class="sbbox"><h2>${E(O.title||'')}</h2><div class="sbmsg">${m}</div><div class="sbrow">${logout?'<button class="sbb" id="sbo">Keluar</button>':''}<button class="sbb p" onclick="location.reload()">Muat ulang</button></div></div>`);const b=$('#sbo');if(b)b.onclick=out}
@@ -86,11 +96,20 @@ function subscribe(){const ch=sb.channel('sb-'+O.module+'-'+Math.random().toStri
  cols.filter(c=>c.rt&&c.ok).forEach(c=>ch.on('postgres_changes',{event:'*',schema:'public',table:c.table},p=>onRT(c,p)));
  ch.subscribe(s=>{conn=s==='SUBSCRIBED';const d=$('#sbdot');if(d)d.textContent=conn?'🟢':'🔴'})}
 /* ---------- bar & kelola pengguna ---------- */
-function bar(){ui();let b=$('#sbbar');if(!b){b=document.createElement('div');b.id='sbbar';document.body.appendChild(b)}
+function bar(){ui();const mt=$('#sbmenu');let b=$('#sbbar');
  const L=C.links||{},cur=O.module==='letterc'?'letterc':'ptsl',oth=cur==='ptsl'?['letterc','Letter C',L.letterc]:['ptsl','Pengajuan PTSL',L.ptsl];
  const ro=SB.akses(O.module)==='baca';
- b.innerHTML=`<span id="sbdot">🟡</span><span>${E(prof.nama||prof.email)} · ${prof.role}${ro?' · HANYA BACA':''}</span><span id="sbst"></span>${oth[2]&&SB.akses(oth[0]==='letterc'?'letterc':'ptsl')!=='tidak'?`<a href="${E(oth[2])}">↗ ${oth[1]}</a>`:''}${SB.isAdmin()?'<button id="sbadm">👥 Kelola Pengguna</button>':''}<button id="sbout">Keluar</button>`;
- $('#sbout').onclick=out;if(SB.isAdmin())$('#sbadm').onclick=usersUI;status(ro?'Mode hanya-baca':'Siap')}
+ const lnk=oth[2]&&SB.akses(oth[0]==='letterc'?'letterc':'ptsl')!=='tidak'?`<a class="mi" href="${E(oth[2])}">↗ ${oth[1]}</a>`:'';
+ const adm=SB.isAdmin()?'<button class="mi" id="sbadm">👥 Kelola Pengguna</button>':'';
+ if(mt){/* menyatu dengan menu aplikasi */
+  if(b)b.remove();
+  mt.innerHTML=`<div class="sbm"><div class="sbi"><span id="sbdot">🟡</span> <b>${E(prof.nama||prof.email)}</b> · ${prof.role}${ro?' · HANYA BACA':''}</div><div id="sbst"></div>${lnk}${adm}<button class="mi" id="sbout">Keluar</button></div>`;
+  $('#sbout').onclick=out;if(SB.isAdmin())$('#sbadm').onclick=()=>usersUI();status(ro?'Mode hanya-baca':'Siap');return}
+ if(!b){b=document.createElement('div');b.id='sbbar';document.body.appendChild(b)}
+ b.innerHTML=`<div id="sbpanel"><div class="who">${E(prof.nama||prof.email)}</div><div class="rl">${prof.role}${ro?' · HANYA BACA':''}</div><div id="sbst"></div>${lnk}${adm}<button class="mi out" id="sbout">Keluar</button></div><button id="sbfab" title="Menu" aria-label="Menu">${SB.isAdmin()?'⚙️':'☰'}<i id="sbdot">🟡</i></button>`;
+ $('#sbfab').onclick=e=>{e.stopPropagation();b.classList.toggle('open')};
+ if(!bar._h){bar._h=1;document.addEventListener('click',e=>{const x=$('#sbbar');if(x&&!x.contains(e.target))x.classList.remove('open')})}
+ $('#sbout').onclick=out;if(SB.isAdmin())$('#sbadm').onclick=()=>{b.classList.remove('open');usersUI()};status(ro?'Mode hanya-baca':'Siap')}
 async function usersUI(tab){tab=tab||'u';let h=$('#sbu');if(!h){h=document.createElement('div');h.id='sbu';document.body.appendChild(h)}
  h.innerHTML='<div class="pn">Memuat…</div>';
  const{data:ps,error}=await sb.from('profiles').select('*').order('created_at');if(error){h.remove();return alert('Gagal: '+error.message)}
