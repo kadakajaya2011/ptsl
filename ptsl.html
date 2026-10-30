@@ -156,6 +156,28 @@ function dbImp(){if(!SB.isAdmin())return alert('Hanya admin yang boleh mengimpor
  if(!confirm('Ganti data berikut dengan isi file?\n'+ks.map(k=>nm[k]+': '+d[k].length+' data').join('\n')))return;
  ks.forEach(k=>{S[k]=d[k].filter(r=>r&&typeof r=='object').map(r=>{r=Object.assign({},r);r.id=r.id||uid();if(k=='aj'&&!STATUS.includes(r.status)){r.status='Pendaftaran';r.tglst=r.tglst||''}return r});S[k+'x']=1});
  SEL.clear();save();render();alert('Impor database selesai.')};f.click()}
+/* ===== Sinkron ke Google Sheets (satu arah, via Apps Script) ===== */
+const GSK='ptsl_gs';
+function gsGet(){try{return JSON.parse(localStorage.getItem(GSK)||'{}')}catch(e){return{}}}
+function gsCfg(){const c=gsGet();
+ const u=prompt('URL Web App Google Apps Script (berakhiran /exec):',c.u||'');if(u===null)return false;
+ if(!/^https:\/\/script\.google\.com\/.+\/exec$/.test(u.trim())){alert('URL tidak valid. Harus diawali https://script.google.com/ dan diakhiri /exec');return false}
+ const t=prompt('Kunci rahasia (harus sama dengan SECRET di Apps Script):',c.t||'');if(t===null)return false;
+ if(!t.trim()){alert('Kunci rahasia wajib diisi.');return false}
+ localStorage.setItem(GSK,JSON.stringify({u:u.trim(),t:t.trim()}));alert('Pengaturan Google Sheet tersimpan di peramban ini.');return true}
+function gsPayload(){DMAP=new Map(S.dh.map(x=>[x.nop,x.nama]));const cols=T.aj.cols,cnt={};S.aj.forEach(x=>cnt[x.nik]=(cnt[x.nik]||0)+1);
+ const header=['No',...cols.map(c=>H[c]),...STATUS.map(s=>'Tgl '+s)];
+ const rows=S.aj.map((r,i)=>[i+1,...cols.map(c=>c=='jumlah'?(cnt[r.nik]||''):c=='namawp'?wpOf(r):c=='tgl'||c=='tglst'?fd(r[c]):r[c]),...STATUS.map(s=>{const x=(r.hist||[]).filter(y=>y.s==s).pop();return x?fd(x.t):''})].map(v=>String(v??'')));
+ return{header,rows}}
+async function gsSync(){if(!SB.isAdmin())return alert('Hanya admin yang boleh menyinkronkan ke spreadsheet.');
+ let c=gsGet();if(!c.u||!c.t){if(!gsCfg())return;c=gsGet()}
+ if(!confirm('Kirim '+S.aj.length+' data Pengajuan PTSL ke Google Sheet?\nIsi sheet "Pengajuan PTSL" akan DIGANTI dengan data terbaru dari aplikasi (semua data, tanpa memandang filter).'))return;
+ const pl=gsPayload();document.body.style.cursor='wait';
+ try{const res=await fetch(c.u,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({token:c.t,sheet:'Pengajuan PTSL',header:pl.header,rows:pl.rows})});
+  const j=await res.json();if(!j.ok)throw new Error(j.err||'Ditolak server');
+  alert('Sinkron selesai: '+j.n+' baris ditulis ke sheet "'+j.sheet+'".')}
+ catch(e){alert('Gagal sinkron: '+(e.message||e)+'\n\nPeriksa URL dan kunci lewat tombol ⚙, dan pastikan Web App di-deploy dengan akses "Siapa saja".')}
+ finally{document.body.style.cursor=''}}
 function rst(){alert('Data kini disimpan di server. Gunakan Impor DB (admin) bila perlu memuat ulang dari berkas.')}
 function wilOk(r){if(F.wl===''&&F.rw===''&&F.rt==='')return true;const k=rkKey(r.alamat);
  if(F.wl=='gt')return !!k.gt;
@@ -196,7 +218,7 @@ function render(keep){const o0=$('.tw'),sv=o0?[o0.scrollTop,o0.scrollLeft]:[0,0]
  $('#view').innerHTML=`<div class="bar"><input type="search" placeholder="Cari NIK / nama / alamat / NOP…" value="${esc(q)}" oninput="q=this.value.toLowerCase();pg=1;render();const n=document.querySelector('.bar input[type=search]');n.focus();n.setSelectionRange(n.value.length,n.value.length)">
  ${tab=='aj'?`<select class="flt" onchange="F.st=this.value;pg=1;render()"><option value="">Semua status</option>${STATUS.map(s=>`<option ${F.st==s?'selected':''}>${s}</option>`).join('')}</select>${dBar()}<select class="flt" onchange="F.kd=this.value;pg=1;render()">${KDOPT.map(o=>`<option value="${o[0]}" ${F.kd==o[0]?'selected':''}>${o[1]}</option>`).join('')}</select>`:''}${tab=='aj'||tab=='pd'?wilBar():''}<button class="btn p" onclick="edit()">+ Tambah</button>
  ${tab!='aj'?`<button class="btn" onclick="imp()">Impor CSV</button>`:``}
- <button class="btn" onclick="exp()">Ekspor CSV</button><button class="btn" onclick="window.print()">Cetak</button>
+ <button class="btn" onclick="exp()">Ekspor CSV</button>${tab=='aj'&&SB.isAdmin()?`<button class="btn" onclick="gsSync()">Sinkron ke Sheet</button><button class="btn s" title="Pengaturan Google Sheet" onclick="gsCfg()">⚙</button>`:''}<button class="btn" onclick="window.print()">Cetak</button>
  <button class="btn d" onclick="clr()">Kosongkan</button></div>
  ${tab=='aj'?`<div class="bar" style="background:var(--c);border:1px solid var(--b);border-radius:8px;padding:8px"><b id="selc">${SEL.size} dipilih</b><button class="btn s" onclick="selAll(true)">Pilih semua hasil filter (${rows.length})</button><button class="btn s" onclick="SEL.clear();render()">Batal pilih</button><span style="flex:1"></span><span>Ubah masal:</span><select id="bst" class="flt"><option value="">— status tidak diubah —</option>${STATUS.map(s=>`<option>${s}</option>`).join('')}</select><input type="date" id="btg" class="flt" title="Tanggal (kosong = hari ini bila status diubah)"><button class="btn p" id="bapp" onclick="bulk()" ${SEL.size?'':'disabled'}>Terapkan</button></div>`:''}
  <div class="box"><div class="tw"><table class="t-${tab}"><thead><tr>${tab=='aj'?`<th class="ac"><input type="checkbox" id="hcb" ${allSel?'checked':''} onchange="selAll(this.checked)"></th>`:''}<th class="c-no">No</th>${cols.map(c=>`<th class="srt c-${c}" onclick="srt('${c}')">${H[c]}${SORT.k==c?(SORT.d>0?' ▲':' ▼'):''}</th>`).join('')}<th class="ac">Aksi</th></tr></thead><tbody>
