@@ -202,17 +202,19 @@ function wilBar(){const src=tab=='pd'?S.pd:S.aj,rws=new Set(),rts=new Set();let 
   if(F.rw===''||(F.rw=='x'?k.rw==999:k.rw==+F.rw)){if(k.rt==999)nrt=1;else rts.add(k.rt)}});
  const so=a=>[...a].sort((x,y)=>x-y),op=(v,l,c)=>`<option value="${v}" ${String(F[c])==String(v)?'selected':''}>${l}</option>`,dis=F.wl=='gt'?'disabled':'';
  return `<select class="flt" title="Wilayah" onchange="F.wl=this.value;if(this.value=='gt'){F.rw='';F.rt=''}pg=1;render()">${op('','Semua wilayah','wl')}${op('in','Dalam desa','wl')}${op('gt','Guntai (luar desa)','wl')}</select><select class="flt" title="RW" ${dis} onchange="F.rw=this.value;F.rt='';pg=1;render()">${op('','Semua RW','rw')}${so(rws).map(n=>op(n,'RW '+n,'rw')).join('')}${nrw?op('x','Tanpa RW','rw'):''}</select><select class="flt" title="RT" ${dis} onchange="F.rt=this.value;pg=1;render()">${op('','Semua RT','rt')}${so(rts).map(n=>op(n,'RT '+n,'rt')).join('')}${nrt?op('x','Tanpa RT','rt'):''}</select>`}
-const KDOPT=[['','Semua data'],['nik','NIK tidak ada di Penduduk'],['nop','NOP tidak ada di DHKP'],['wp','Nama WP -'],['nub1','NUB terisi'],['nub0','NUB kosong'],['dboth','NIK & NOP sama (dobel)'],['dnik','NIK sama (muncul >1x)'],['dnop','NOP sama (muncul >1x)']];
+const KDOPT=[['','Semua data'],['nik','NIK tidak ada di Penduduk'],['nop','NOP tidak ada di DHKP'],['wp','Nama WP -'],['nub1','NUB terisi'],['nub0','NUB kosong'],['dboth','NIK & NOP sama (dobel)'],['dnik','NIK sama (muncul >1x)'],['dnop','NOP sama (muncul >1x)'],['dnub','NUB sama (muncul >1x)'],['dyur','Yuridis sama (muncul >1x)'],['dnib','NIB sama (muncul >1x)']];
 let DUP={cn:{},cp:{},cb:{}};
-const isDupF=k=>k=='dboth'||k=='dnik'||k=='dnop';
-function dupSets(){const cn={},cp={},cb={};S.aj.forEach(x=>{cn[x.nik]=(cn[x.nik]||0)+1;if(x.nop){cp[x.nop]=(cp[x.nop]||0)+1;const b=x.nik+'|'+x.nop;cb[b]=(cb[b]||0)+1}});return{cn,cp,cb}}
-const isDup=(r,k)=>k=='dnik'?DUP.cn[r.nik]>1:k=='dnop'?!!r.nop&&DUP.cp[r.nop]>1:!!r.nop&&DUP.cb[r.nik+'|'+r.nop]>1;
-const dupGrp=(r,k)=>k=='dnik'?r.nik:k=='dnop'?r.nop:r.nik+'|'+r.nop;
-const dupOrd=(r,k)=>k=='dnop'?r.nop+'|'+r.nik:r.nik+'|'+r.nop;
+const isDupF=k=>['dboth','dnik','dnop','dnub','dyur','dnib'].includes(k);
+const DUF={dnub:'nub',dyur:'yuridis',dnib:'nib'};
+function dupSets(){const cn={},cp={},cb={},cx={};S.aj.forEach(x=>{['nub','yuridis','nib'].forEach(f=>{const v=String(x[f]||'').trim();if(v){const q=f+'|'+v;cx[q]=(cx[q]||0)+1}});cn[x.nik]=(cn[x.nik]||0)+1;if(x.nop){cp[x.nop]=(cp[x.nop]||0)+1;const b=x.nik+'|'+x.nop;cb[b]=(cb[b]||0)+1}});return{cn,cp,cb,cx}}
+const isDup=(r,k)=>DUF[k]?!!String(r[DUF[k]]||'').trim()&&DUP.cx[DUF[k]+'|'+String(r[DUF[k]]).trim()]>1:k=='dnik'?DUP.cn[r.nik]>1:k=='dnop'?!!r.nop&&DUP.cp[r.nop]>1:!!r.nop&&DUP.cb[r.nik+'|'+r.nop]>1;
+const dupGrp=(r,k)=>DUF[k]?String(r[DUF[k]]||'').trim():k=='dnik'?r.nik:k=='dnop'?r.nop:r.nik+'|'+r.nop;
+const dupOrd=(r,k)=>DUF[k]?String(r[DUF[k]]||'').trim()+'|'+r.nik:k=='dnop'?r.nop+'|'+r.nik:r.nik+'|'+r.nop;
 let F={st:'',d1:'',d2:'',kd:'',wl:'',rw:'',rt:''};
 const dOk=r=>(!F.d1||(r.tglst||'')>=F.d1)&&(!F.d2||(r.tglst||'')<=F.d2);
 const dBar=()=>`<input type="date" class="flt" title="Tanggal status: dari" value="${F.d1}" onchange="F.d1=this.value;pg=1;render()"><span>s/d</span><input type="date" class="flt" title="Tanggal status: sampai" value="${F.d2}" onchange="F.d2=this.value;pg=1;render()">${F.d1||F.d2?'<button class="btn s" onclick="F.d1=F.d2=\'\';pg=1;render()">Reset tgl</button>':''}`;
-const dLbl=()=>F.d1||F.d2?'TGL. STATUS : '+(F.d1?fd(F.d1):'...')+' S/D '+(F.d2?fd(F.d2):'...')+' &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ':'';let SORT={k:'',d:1};function srt(k){if(SORT.k==k)SORT.d=-SORT.d;else SORT={k,d:1};pg=1;render()}
+const dLbl=()=>F.d1||F.d2?'TGL. STATUS : '+(F.d1?fd(F.d1):'...')+' S/D '+(F.d2?fd(F.d2):'...')+' &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ':'';const SORTOPT=[['','Urutkan: bawaan'],['nik','NIK'],['nama','Nama'],['alamat','Alamat'],['nop','NOP'],['nub','NUB'],['yuridis','Yuridis'],['nib','NIB'],['status','Status'],['tglst','Tanggal status'],['g:nik','Data sama: NIK'],['g:nop','Data sama: NOP'],['g:nikop','Data sama: NIK & NOP'],['g:nub','Data sama: NUB'],['g:yuridis','Data sama: Yuridis'],['g:nib','Data sama: NIB']];
+let SORT={k:'',d:1};function srt(k){if(SORT.k==k)SORT.d=-SORT.d;else SORT={k,d:1};pg=1;render()}
 let tab='aj',q='',pg=1;let PER=25;
 const T={aj:{n:'Pengajuan PTSL',cols:['nik','nama','tempat','tgl','alamat','kode','nop','namawp','nub','yuridis','nib','jumlah','status','tglst']},pd:{n:'Data Penduduk',cols:['nik','nama','tempat','tgl','alamat']},dh:{n:'DHKP 2026',cols:['nop','nama','alamat','blok']},rk:{n:'Rekap RT/RW',cols:[]},dp:{n:'Daftar Pengajuan',cols:[]},pb:{n:'Pemberkasan',cols:[]}};
 const H={nik:'NIK',nama:'Nama Lengkap',tempat:'Tempat Lahir',tgl:'Tanggal Lahir',alamat:'Alamat',nop:'NOP',status:'Status',nub:'NUB',yuridis:'Yuridis',nib:'NIB',blok:'Letak Objek',kode:'Kode',namawp:'Nama WP',jumlah:'Jml Diajukan',tglst:'Tanggal Status'};
@@ -223,11 +225,15 @@ function render(keep){const o0=$('.tw'),sv=o0?[o0.scrollTop,o0.scrollLeft]:[0,0]
   if(tab=='aj'||tab=='pd')rows=rows.filter(wilOk);
   if(tab=='aj'&&isDupF(F.kd)&&!SORT.k){rows=rows.slice().sort((a,b)=>{const x=dupOrd(a,F.kd),y=dupOrd(b,F.kd);return x<y?-1:x>y?1:0})}
  if(SORT.k){const k=SORT.k,d=SORT.d,cq={};if(k=='jumlah')S.aj.forEach(x=>cq[x.nik]=(cq[x.nik]||0)+1);
- const v=r=>k=='jumlah'?(cq[r.nik]||0):k=='status'?STATUS.indexOf(r.status):String(k=='namawp'?wpOf(r):(r[k]??''));
- rows=rows.slice().sort((a,b)=>{const x=v(a),y=v(b);if(x===''&&y!=='')return 1;if(y===''&&x!=='')return -1;return(typeof x=='number'?x-y:String(x).localeCompare(String(y),'id',{numeric:true,sensitivity:'base'}))*d})}
+ const GK={'g:nik':r=>r.nik,'g:nop':r=>r.nop,'g:nikop':r=>r.nop?r.nik+'|'+r.nop:'','g:nub':r=>r.nub,'g:yuridis':r=>yu(r.yuridis),'g:nib':r=>r.nib};
+ if(GK[k]){const gf=r=>String(GK[k](r)||'').trim(),gc={};rows.forEach(r=>{const g=gf(r);if(g)gc[g]=(gc[g]||0)+1});
+  rows=rows.slice().sort((a,b)=>{const ga=gf(a),gb=gf(b),da=ga&&gc[ga]>1?1:0,db=gb&&gc[gb]>1?1:0;if(da!==db)return db-da;if(!da)return 0;return(ga.localeCompare(gb,'id',{numeric:true})||String(a.nik).localeCompare(String(b.nik)))*d})}
+ else{const nm=x=>{const m=String(x||'').match(/\d+/);return m?+m[0]:''};
+ const v=r=>k=='jumlah'?(cq[r.nik]||0):k=='status'?STATUS.indexOf(r.status):k=='yuridis'?nm(yu(r.yuridis)):String(k=='namawp'?wpOf(r):(r[k]??''));
+ rows=rows.slice().sort((a,b)=>{const x=v(a),y=v(b);if(x===''&&y!=='')return 1;if(y===''&&x!=='')return -1;return(typeof x=='number'?x-y:String(x).localeCompare(String(y),'id',{numeric:true,sensitivity:'base'}))*d})}}
  CUR=rows;const allSel=rows.length>0&&rows.every(r=>SEL.has(r.id));const pages=Math.max(1,Math.ceil(rows.length/PER));if(pg>pages)pg=pages;const sl=rows.slice((pg-1)*PER,pg*PER);const cnt={};S.aj.forEach(x=>cnt[x.nik]=(cnt[x.nik]||0)+1);
  $('#view').innerHTML=`<div class="bar"><input type="search" placeholder="Cari NIK / nama / alamat / NOP…" value="${esc(q)}" oninput="q=this.value.toLowerCase();pg=1;render();const n=document.querySelector('.bar input[type=search]');n.focus();n.setSelectionRange(n.value.length,n.value.length)">
- ${tab=='aj'?`<select class="flt" onchange="F.st=this.value;pg=1;render()"><option value="">Semua status</option>${STATUS.map(s=>`<option ${F.st==s?'selected':''}>${s}</option>`).join('')}</select>${dBar()}<select class="flt" onchange="F.kd=this.value;pg=1;render()">${KDOPT.map(o=>`<option value="${o[0]}" ${F.kd==o[0]?'selected':''}>${o[1]}</option>`).join('')}</select>`:''}${tab=='aj'||tab=='pd'?wilBar():''}<button class="btn p" onclick="edit()">+ Tambah</button>
+ ${tab=='aj'?`<select class="flt" onchange="F.st=this.value;pg=1;render()"><option value="">Semua status</option>${STATUS.map(s=>`<option ${F.st==s?'selected':''}>${s}</option>`).join('')}</select>${dBar()}<select class="flt" onchange="F.kd=this.value;pg=1;render()">${KDOPT.map(o=>`<option value="${o[0]}" ${F.kd==o[0]?'selected':''}>${o[1]}</option>`).join('')}</select><select class="flt" title="Urutkan data" onchange="SORT.k=this.value;if(!SORT.d)SORT.d=1;pg=1;render()">${SORTOPT.map(o=>`<option value="${o[0]}" ${SORT.k==o[0]?'selected':''}>${o[1]}</option>`).join('')}</select><button class="btn s" title="Balik arah urutan" onclick="SORT.d=-SORT.d;pg=1;render()">${SORT.d>0?'▲ A-Z':'▼ Z-A'}</button>`:''}${tab=='aj'||tab=='pd'?wilBar():''}<button class="btn p" onclick="edit()">+ Tambah</button>
  ${tab!='aj'?`<button class="btn" onclick="imp()">Impor CSV</button>`:``}
  <button class="btn" onclick="exp()">Ekspor CSV</button>${tab=='aj'&&SB.isAdmin()?`<button class="btn" onclick="gsSync()">Sinkron ke Sheet</button><button class="btn s" title="Pengaturan Google Sheet" onclick="gsCfg()">⚙</button><button class="btn s" title="Tes koneksi Google Sheet" onclick="gsTest()">Tes</button>`:''}<button class="btn" onclick="window.print()">Cetak</button>
  <button class="btn d" onclick="clr()">Kosongkan</button></div>
