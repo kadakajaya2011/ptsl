@@ -274,10 +274,13 @@ function nubGap(){
 function nubCopy(){const t=$('#nlog'),ok=()=>{$('#ncp').textContent='Log disalin ke clipboard.'},fb=()=>{t.focus();t.select();try{document.execCommand('copy')?ok():($('#ncp').textContent='Gagal menyalin. Blok teks lalu tekan Ctrl+C.')}catch(e){$('#ncp').textContent='Gagal menyalin. Blok teks lalu tekan Ctrl+C.'}};
  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t.value).then(ok,fb);else fb()}
 function rwHtml(r){const h=r.hist||[];if(!h.length)return'<p class="hint">Riwayat status: kosong</p>';
- return`<div style="border:1px solid var(--b);border-radius:8px;padding:8px;margin:8px 0"><b>Riwayat status</b><div style="margin-top:6px">${h.map((x,i)=>`<div style="display:flex;align-items:center;gap:8px;padding:2px 0"><span style="flex:1">${esc(x.s)} (${esc(fd(x.t)||'-')})</span><button class="btn s d" onclick="hDel('${r.id}',${i})">Hapus</button></div>`).join('')}</div><button class="btn s d" style="margin-top:6px" onclick="hDel('${r.id}',-1)">Hapus semua riwayat</button><p class="hint">Penghapusan langsung tersimpan. Status saat ini akan tercatat lagi saat tombol Simpan ditekan.</p></div>`}
+ return`<div style="border:1px solid var(--b);border-radius:8px;padding:8px;margin:8px 0"><b>Riwayat status</b><div style="margin-top:6px">${h.map((x,i)=>`<div style="display:flex;align-items:center;gap:8px;padding:2px 0"><span style="flex:1">${esc(x.s)} (${esc(fd(x.t)||'-')})</span><button class="btn s d" onclick="hDel('${r.id}',${i})">Hapus</button></div>`).join('')}</div><button class="btn s d" style="margin-top:6px" onclick="hDel('${r.id}',-1)">Hapus semua riwayat</button><p class="hint">Penghapusan langsung tersimpan dan status kembali ke riwayat terakhir yang tersisa. Jika semua riwayat dihapus, status menjadi Pendaftaran.</p></div>`}
 function hDel(id,i){const r=S.aj.find(x=>x.id==id);if(!r)return;
  if(!confirm(i<0?'Hapus SEMUA riwayat status pengajuan ini?':'Hapus entri riwayat ini?'))return;
  if(i<0)r.hist=[];else(r.hist||[]).splice(i,1);
+ const h=r.hist||[],l=h[h.length-1];
+ if(l){r.status=l.s;r.tglst=l.t||''}else setSt(r,STATUS[0],'');
+ const fs=$('#f_status'),ft=$('#f_tglst');if(fs)fs.value=r.status;if(ft)ft.value=r.tglst||'';
  save();const e=$('#rwy');if(e)e.innerHTML=rwHtml(r);render(1)}
 function kd(){const k=$('#f_kode').value.replace(/\D/g,'');if(k.length!=7)return;const n='32.13.030.025.'+k.slice(0,3)+'.'+k.slice(3)+'-0';$('#f_nop').value=n;const d=S.dh.find(x=>x.nop==n);$('#f_namawp').value=d?d.nama:'-';ni()}
 function ni(f){const v=$('#f_nop').value.trim(),d=S.dh.find(x=>x.nop==v),e=$('#nopinfo');if(f){$('#f_kode').value=v.length>=22?v.slice(14,17)+v.slice(18,22):'';$('#f_namawp').value=d?d.nama:(v?'-':'')}
