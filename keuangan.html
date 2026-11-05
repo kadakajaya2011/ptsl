@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8"><meta name="robots" content="noindex,nofollow"><title>Keuangan PTSL - Desa Kadakajaya</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>
+:root{--bg:#f5f6f8;--c:#fff;--t:#1d2430;--m:#667085;--b:#d9dde5;--p:#0f766e;--d:#b42318;--ok:#067647;--wr:#b54708;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12161c;--c:#1b212b;--t:#e8ebf0;--m:#98a2b3;--b:#333b48;--p:#2dd4bf;--d:#f97066;--ok:#47cd89;--wr:#fdb022}}
+:root[data-theme="dark"]{--bg:#12161c;--c:#1b212b;--t:#e8ebf0;--m:#98a2b3;--b:#333b48;--p:#2dd4bf;--d:#f97066;--ok:#47cd89;--wr:#fdb022}
+*{box-sizing:border-box}html,body{height:100%}
+body{display:flex;flex-direction:column;overflow:hidden;margin:0;background:var(--bg);color:var(--t);font:14px/1.45 system-ui,Segoe UI,Arial,sans-serif}
+header{display:flex;flex-wrap:wrap;align-items:center;gap:8px;flex:none;padding:8px 14px;background:var(--p);color:#fff}
+header h1{margin:0;font-size:16px}header small{opacity:.85}
+header a.btn{background:#ffffff22;color:#fff;border-color:#ffffff55;text-decoration:none}
+header a.btn:hover{background:#ffffff40}
+body #sbmenu a.mi[href*="letter"]{display:none}
+.w{flex:1;min-height:0;display:flex;flex-direction:column;width:100%;padding:10px 14px}
+#view{flex:1;min-height:0;display:flex;flex-direction:column;overflow:auto}
+.cards{flex:none;display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+.cd{flex:1;min-width:140px;background:var(--c);border:1px solid var(--b);border-radius:8px;padding:8px 12px}
+.cd small{display:block;color:var(--m);font-size:12px}.cd b{font-size:17px;font-variant-numeric:tabular-nums}
+.tabs{flex:none;display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap}
+.tabs button{padding:8px 14px;border:1px solid var(--b);background:var(--c);color:var(--t);border-radius:8px;cursor:pointer;font:inherit}
+.tabs button.on{background:var(--p);color:#fff;border-color:var(--p)}
+.bar{flex:none;display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px;align-items:center}
+.bar input[type=search]{flex:1;min-width:180px}
+input,select,textarea{padding:8px;border:1px solid var(--b);border-radius:6px;background:var(--c);color:var(--t);font:inherit;width:100%}
+.flt{width:auto}
+.btn{padding:8px 12px;border:1px solid var(--b);background:var(--c);color:var(--t);border-radius:6px;cursor:pointer;font:inherit;white-space:nowrap;width:auto;display:inline-block}
+.btn.p{background:var(--p);color:#fff;border-color:var(--p)}.btn.d{color:var(--d)}.btn.s{padding:4px 8px;font-size:12px}
+.btn.in{color:var(--ok);border-color:var(--ok)}.btn.out{color:var(--d);border-color:var(--d)}
+.box{background:var(--c);border:1px solid var(--b);border-radius:8px;overflow:hidden;flex:1;min-height:200px;display:flex;flex-direction:column}
+.tw{flex:1;min-height:0;overflow:auto}
+table{border-collapse:collapse;width:max-content;min-width:100%}
+th,td{padding:7px 9px;border-bottom:1px solid var(--b);text-align:left;vertical-align:top;white-space:nowrap}
+th{position:sticky;top:0;z-index:2;background:var(--bg);font-size:12px;text-transform:uppercase;color:var(--m);box-shadow:0 1px 0 var(--b)}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+tr.cl{cursor:pointer}tr.cl:hover td{background:color-mix(in srgb,var(--p) 8%,transparent)}
+.pos{color:var(--ok)}.neg{color:var(--d)}.mut{color:var(--m)}
+.badge{padding:2px 8px;border-radius:10px;font-size:12px;border:1px solid var(--b);background:var(--bg)}
+.b-ok{color:var(--ok);border-color:var(--ok)}.b-wr{color:var(--wr);border-color:var(--wr)}.b-no{color:var(--d);border-color:var(--d)}
+.empty{padding:24px;text-align:center;color:var(--m)}
+.pg{flex:none;border-top:1px solid var(--b);display:flex;gap:14px;align-items:center;justify-content:flex-end;padding:8px;flex-wrap:wrap;font-variant-numeric:tabular-nums}
+.hint{font-size:12px;color:var(--m);margin:4px 0 0}
+label{font-size:12px;color:var(--m);display:block;margin-bottom:3px}
+.mo{position:fixed;inset:0;background:#0008;display:none;align-items:center;justify-content:center;padding:12px;z-index:9}
+.mo.on{display:flex}#m2{z-index:10}
+.card{background:var(--c);border-radius:10px;padding:16px;width:100%;max-width:560px;max-height:94%;overflow:auto}
+.card.wide{max-width:900px}
+.g{display:grid;grid-template-columns:1fr 1fr;gap:10px}.g .f{grid-column:1/-1}
+.sg{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin:10px 0}
+.sg div{border:1px solid var(--b);border-radius:8px;padding:6px 10px}.sg small{display:block;color:var(--m);font-size:11px}.sg b{font-variant-numeric:tabular-nums}
+.sec{margin:14px 0 6px;font-weight:600;color:var(--p)}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.warn{background:#fff7e0;color:#5c3d00;border:1px solid #f0d98a;border-radius:8px;padding:12px;margin-bottom:8px}
+.warn pre{background:#0001;padding:8px;border-radius:6px;white-space:pre-wrap;margin:6px 0 0}
+@media(max-width:520px){.g{grid-template-columns:1fr}}
+#pp{display:none}
+@media print{
+ html{height:auto!important;overflow:visible!important}
+ body.ppr{display:block!important;overflow:visible!important;height:auto!important;background:#fff!important;color:#000!important}
+ body.ppr header,body.ppr .w,body.ppr .mo,body.ppr #sbmenu{display:none!important}
+ body.ppr #pp{display:block;font:10pt/1.35 Arial,Helvetica,sans-serif;color:#000}
+ #pp h2{font-size:13pt;margin:0 0 2px;text-align:center;text-transform:uppercase}
+ #pp .sub{text-align:center;margin-bottom:8px;font-size:10pt}
+ #pp h3{font-size:10.5pt;margin:12px 0 4px}
+ #pp table{width:100%;border-collapse:collapse;font-size:9pt;min-width:0}
+ #pp th,#pp td{border:1px solid #888;padding:3px 5px;white-space:normal;text-align:left;vertical-align:top;position:static;box-shadow:none;color:#000;font-size:9pt;text-transform:none}
+ #pp th{background:#eee!important;-webkit-print-color-adjust:exact;print-color-adjust:exact;text-align:center}
+ #pp td.n,#pp th.n{text-align:right}
+ #pp tfoot td{font-weight:700;background:#f3f3f3!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+ #pp thead{display:table-header-group}#pp tr{break-inside:avoid;page-break-inside:avoid}
+ #pp table.kv td{border:0;padding:1px 6px 1px 0}#pp table.kv td:first-child{width:140px}
+}
+</style></head><body>
+<header><div><h1>Keuangan PTSL — Desa Kadakajaya</h1><small>Pemasukan &amp; pengeluaran per pengajuan · Kec. Tanjungsari, Kab. Sumedang</small></div><span style="flex:1"></span><a class="btn s" href="ptsl.html">← Pengajuan PTSL</a><a class="btn s" href="index.html">Menu</a><span id="sbmenu"></span></header>
+<div class="w"><div id="sum"></div><div class="tabs" id="tabs"></div><div id="view"></div></div>
+<div class="mo" id="m"><div class="card wide" id="card"></div></div>
+<div class="mo" id="m2"><div class="card" id="card2"></div></div>
+<div id="pp"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script src="config.js"></script>
+<script src="sb-core.js"></script>
+<script>
+'use strict';
+/* ===== Data & pembantu ===== */
+let S={aj:[],dh:[],kx:[]};            // aj = pengajuan (hanya baca), dh = DHKP (hanya baca), kx = catatan keuangan
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+const TODAY=()=>new Date(Date.now()-new Date().getTimezoneOffset()*6e4).toISOString().slice(0,10);
+const fd=d=>{if(!d)return'';const[a,b,c]=d.split('-');return c?`${c}-${b}-${a}`:d};
+const nf=n=>Math.round(Math.abs(n||0)).toLocaleString('id-ID');
+const rp=n=>(n<0?'−':'')+'Rp '+nf(n);
+const sg=n=>n<0?'neg':n>0?'pos':'mut';
+const yu=v=>String(v||'').replace(/^Y/i,'');
+const MON=['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+const bln=ym=>{const[y,m]=ym.split('-');return(MON[+m-1]||m)+' '+y};
+const W=()=>SB.canWrite('ptsl');
+const OUTRX=/\b(desa|des\.|ds\.|kel\.|kelurahan|kec\.|kecamatan|kab\.|kabupaten|kota)(?![a-z])/i;
+function rwKey(a){a=a||'';if(OUTRX.test(a)&&!/kadakajaya/i.test(a))return{gt:1,rw:0};const w=a.match(/RW\.?\s*0*(\d+)/i);return{gt:0,rw:w?+w[1]:999}}
+const DEF={tarif:0,ov:{},katMasuk:['Biaya PTSL','Patok / tanda batas','Materai','Lainnya'],katKeluar:['Materai','Patok / tanda batas','Fotokopi & ATK','Transport / operasional','Lainnya']};
+const cfg=()=>Object.assign({},DEF,S.kx.find(r=>r.id==='cfg')||{});
+const TRX=()=>S.kx.filter(r=>r.id!=='cfg'&&r.jenis);
+function cfgW(fn){let r=S.kx.find(x=>x.id==='cfg');if(!r){r=JSON.parse(JSON.stringify(Object.assign({id:'cfg'},DEF)));S.kx=S.kx.concat([r])}fn(r);SB.push();render()}
+
+/* ===== Susun data per orang (kunci = NIK) ===== */
+let D={P:[],map:new Map(),U:null,wp:new Map()};
+function build(){
+ const P=new Map(),wp=new Map(S.dh.map(x=>[x.nop,x.nama])),c=cfg();
+ const mk=(key,o)=>Object.assign({key,nik:'',nama:'',alamat:'',aj:[],tx:[],masuk:0,keluar:0},o);
+ for(const r of S.aj){const nik=String(r.nik||'').trim(),k=nik||'ID-'+r.id;let p=P.get(k);
+  if(!p){p=mk(k,{nik});P.set(k,p)}
+  p.aj.push(r);if(!p.nama&&r.nama)p.nama=r.nama;if(!p.alamat&&r.alamat)p.alamat=r.alamat}
+ const U=mk('',{nama:'Umum (tidak terkait orang)',umum:1});
+ for(const t of TRX()){const k=t.nik||'';let p=k===''?U:P.get(k);
+  if(!p){p=mk(k,{nik:k,nama:t.nama||'(tidak dikenal)',orphan:1});P.set(k,p)}
+  p.tx.push(t);if(t.jenis==='masuk')p.masuk+=+t.jumlah||0;else p.keluar+=+t.jumlah||0}
+ const calc=p=>{const ov=c.ov&&c.ov[p.key];
+  p.tagihan=(ov!=null&&ov!=='')?+ov:(c.tarif>0&&p.aj.length?c.tarif*p.aj.length:null);
+  p.saldo=p.masuk-p.keluar;
+  p.sisa=p.tagihan==null?null:Math.max(0,p.tagihan-p.masuk);
+  p.sb=p.tagihan==null?'':p.tagihan===0?'Bebas':p.masuk>=p.tagihan?'Lunas':p.masuk>0?'Kurang':'Belum bayar'};
+ P.forEach(calc);calc(U);
+ D={P:[...P.values()],map:P,U,wp};
+}
+const byTgl=(a,b)=>(a.tgl||'').localeCompare(b.tgl||'')||(a.id>b.id?1:-1);
+function ledger(list){let s=0;return list.slice().sort(byTgl).map(t=>{s+=(t.jenis==='masuk'?1:-1)*(+t.jumlah||0);return{t,s}})}
+const allKas=()=>ledger(TRX());
+const BDG={Lunas:'b-ok',Bebas:'b-ok',Kurang:'b-wr','Belum bayar':'b-no'};
+const sbBadge=p=>p.sb?`<span class="badge ${BDG[p.sb]}">${p.sb}</span>`:'<span class="mut">-</span>';
+
+/* ===== Kerangka: ringkasan, tab, tampilan ===== */
+let tab='org',VT='',DK=null,FM=null,TBLOK=true;
+const F={q:'',sb:'',rw:'',so:'nama'},K={q:'',j:'',kat:'',d1:'',d2:'',o:'asc'};
+const TABS=[['org','Per Orang'],['kas','Buku Kas'],['rek','Rekap'],['set','Pengaturan']];
+function render(){build();tabsR();sumR();view();if(DK!==null&&!FM)detail()}
+function tabsR(){$('#tabs').innerHTML=TABS.map(([k,n])=>`<button class="${tab===k?'on':''}" data-a="tab" data-v="${k}">${n}</button>`).join('')}
+function sumR(){
+ let m=0,k=0;TRX().forEach(t=>{if(t.jenis==='masuk')m+=+t.jumlah||0;else k+=+t.jumlah||0});
+ const ps=D.P.filter(p=>!p.orphan),sisa=ps.reduce((a,p)=>a+(p.sisa||0),0),hasT=ps.some(p=>p.tagihan!=null),lunas=ps.filter(p=>p.sb==='Lunas'||p.sb==='Bebas').length;
+ const c=(l,v,cl)=>`<div class="cd"><small>${l}</small><b class="${cl||''}">${v}</b></div>`;
+ $('#sum').innerHTML=`<div class="cards">${c('Total Pemasukan',rp(m),'pos')}${c('Total Pengeluaran',rp(k),'neg')}${c('Saldo Kas',rp(m-k),sg(m-k))}${c('Orang di Pengajuan',nf(ps.length)+(hasT?` · ${nf(lunas)} lunas`:''))}${hasT?c('Kekurangan Tagihan',rp(sisa),sisa?'neg':'pos'):''}</div>`}
+function view(){
+ const v=$('#view');
+ if(!TBLOK){VT='';v.innerHTML=`<div class="warn"><b>Tabel keuangan belum ada di Supabase.</b> Buka Supabase → SQL Editor, tempel seluruh isi berkas <code>schema-keuangan.sql</code>, klik Run, lalu muat ulang halaman ini. Sebelum itu, pencatatan dinonaktifkan agar tidak ada data yang hilang.</div>`;return}
+ const nw=VT!==tab;VT=tab;
+ if(tab==='org'){if(nw)mkOrg();fillOrg()}
+ else if(tab==='kas'){if(nw)mkKas();fillKas()}
+ else if(tab==='rek')viewRek();
+ else if(nw)viewSet();
+}
+
+/* ===== Tab: Per Orang ===== */
+function mkOrg(){
+ const rws=[...new Set(D.P.filter(p=>!p.orphan).map(p=>{const k=rwKey(p.alamat);return k.gt?'gt':k.rw===999?'x':String(k.rw)}))].sort((a,b)=>(isNaN(a)-isNaN(b))||a-b);
+ const sel=(k,o)=>o.map(([v,n])=>`<option value="${v}" ${F[k]===v?'selected':''}>${n}</option>`).join('');
+ $('#view').innerHTML=`<div class="bar"><input type="search" placeholder="Cari nama / NIK / NOP / alamat…" value="${esc(F.q)}" data-i="org" data-k="q">
+ <select class="flt" data-i="org" data-k="sb">${sel('sb',[['','Semua status bayar'],['Lunas','Lunas'],['Kurang','Kurang'],['Belum bayar','Belum bayar'],['Bebas','Bebas'],['_tx','Sudah ada transaksi'],['_no','Belum ada transaksi']])}</select>
+ <select class="flt" data-i="org" data-k="rw">${sel('rw',[['','Semua wilayah'],...rws.map(r=>[r,r==='gt'?'Guntai':r==='x'?'Tanpa RW':'RW '+r])])}</select>
+ <select class="flt" data-i="org" data-k="so">${sel('so',[['nama','Urut: Nama'],['sisa','Urut: Kekurangan terbesar'],['masuk','Urut: Pemasukan terbesar'],['keluar','Urut: Pengeluaran terbesar'],['saldo','Urut: Saldo terbesar']])}</select>
+ <span style="flex:1"></span><button class="btn" data-a="csvOrg">Ekspor CSV</button><button class="btn" data-a="prOrg">Cetak</button></div>
+ <div class="box"><div class="tw" id="tbl"></div><div class="pg" id="foot"></div></div>`}
+function orgRows(){
+ const q=F.q.trim().toLowerCase();
+ const r=D.P.filter(p=>{
+  if(q&&!(p.nama+' '+p.nik+' '+p.alamat+' '+p.aj.map(a=>a.nop).join(' ')).toLowerCase().includes(q))return false;
+  if(F.sb==='_tx'){if(!p.tx.length)return false}else if(F.sb==='_no'){if(p.tx.length)return false}else if(F.sb&&p.sb!==F.sb)return false;
+  if(F.rw!==''){const k=rwKey(p.alamat);if(F.rw==='gt'){if(!k.gt)return false}else{if(k.gt)return false;if(F.rw==='x'?k.rw!==999:k.rw!==+F.rw)return false}}
+  return true});
+ const so=F.so;r.sort(so==='nama'?(a,b)=>a.nama.localeCompare(b.nama):(a,b)=>((b[so]??-1)-(a[so]??-1))||a.nama.localeCompare(b.nama));return r}
+function fillOrg(){
+ const R=orgRows(),w=W();let tm=0,tk=0,tt=0,ts=0;
+ const rows=R.map((p,i)=>{tm+=p.masuk;tk+=p.keluar;tt+=p.tagihan||0;ts+=p.sisa||0;
+  return`<tr class="cl" data-a="open" data-k="${esc(p.key)}"><td class="n mut">${i+1}</td><td><b>${esc(p.nama)}</b>${p.orphan?' <span class="badge b-wr">tidak ada di pengajuan</span>':''}</td><td>${esc(p.nik)||'<span class="mut">-</span>'}</td><td style="white-space:normal;min-width:180px">${esc(p.alamat)}</td><td class="n">${p.aj.length||''}</td><td class="n">${p.tagihan==null?'<span class="mut">-</span>':nf(p.tagihan)}</td><td class="n pos">${p.masuk?nf(p.masuk):''}</td><td class="n neg">${p.keluar?nf(p.keluar):''}</td><td class="n ${sg(p.saldo)}">${p.tx.length?(p.saldo<0?'−':'')+nf(p.saldo):''}</td><td class="n ${p.sisa?'neg':''}">${p.sisa==null?'':nf(p.sisa)}</td><td>${sbBadge(p)}</td><td>${w?`<button class="btn s in" data-a="add" data-j="masuk" data-k="${esc(p.key)}">+ Masuk</button> <button class="btn s out" data-a="add" data-j="keluar" data-k="${esc(p.key)}">+ Keluar</button>`:''}</td></tr>`}).join('');
+ $('#tbl').innerHTML=R.length?`<table><thead><tr><th class="n">No</th><th>Nama</th><th>NIK</th><th>Alamat</th><th class="n">Pengajuan</th><th class="n">Tagihan (Rp)</th><th class="n">Pemasukan (Rp)</th><th class="n">Pengeluaran (Rp)</th><th class="n">Saldo (Rp)</th><th class="n">Kekurangan (Rp)</th><th>Status</th><th></th></tr></thead><tbody>${rows}</tbody></table>`:'<div class="empty">Tidak ada data yang cocok.</div>';
+ $('#foot').innerHTML=`<span>${nf(R.length)} orang</span><span>Pemasukan <b class="pos">${rp(tm)}</b></span><span>Pengeluaran <b class="neg">${rp(tk)}</b></span><span>Saldo <b class="${sg(tm-tk)}">${rp(tm-tk)}</b></span>`}
+
+/* ===== Tab: Buku Kas ===== */
+function mkKas(){
+ $('#view').innerHTML=`<div class="bar"><input type="search" placeholder="Cari nama / uraian / no. bukti…" value="${esc(K.q)}" data-i="kas" data-k="q">
+ <select class="flt" data-i="kas" data-k="j"><option value="">Masuk &amp; keluar</option><option value="masuk" ${K.j==='masuk'?'selected':''}>Pemasukan saja</option><option value="keluar" ${K.j==='keluar'?'selected':''}>Pengeluaran saja</option></select>
+ <select class="flt" id="kkat" data-i="kas" data-k="kat"></select>
+ <label style="margin:0;display:flex;gap:4px;align-items:center">Dari <input type="date" class="flt" value="${esc(K.d1)}" data-i="kas" data-k="d1"></label>
+ <label style="margin:0;display:flex;gap:4px;align-items:center">s/d <input type="date" class="flt" value="${esc(K.d2)}" data-i="kas" data-k="d2"></label>
+ <select class="flt" data-i="kas" data-k="o"><option value="asc">Terlama → terbaru</option><option value="desc" ${K.o==='desc'?'selected':''}>Terbaru → terlama</option></select>
+ <span style="flex:1"></span>${W()?'<button class="btn s in" data-a="add" data-j="masuk" data-k="">+ Pemasukan</button><button class="btn s out" data-a="add" data-j="keluar" data-k="">+ Pengeluaran</button>':''}<button class="btn" data-a="csvKas">Ekspor CSV</button><button class="btn" data-a="prKas">Cetak</button></div>
+ <div class="box"><div class="tw" id="tbl"></div><div class="pg" id="foot"></div></div>`}
+function kasRows(){
+ const q=K.q.trim().toLowerCase();
+ const r=allKas().filter(({t})=>{
+  if(K.j&&t.jenis!==K.j)return false;if(K.kat&&t.kat!==K.kat)return false;
+  if(K.d1&&(t.tgl||'')<K.d1)return false;if(K.d2&&(t.tgl||'')>K.d2)return false;
+  if(q&&!([t.nama,t.uraian,t.bukti,t.kat,t.ket,t.nop].join(' ').toLowerCase().includes(q)))return false;return true});
+ return K.o==='desc'?r.reverse():r}
+function fillKas(){
+ const kt=[...new Set(TRX().map(t=>t.kat).filter(Boolean))].sort(),sel=$('#kkat');
+ if(sel&&sel.options.length!==kt.length+1){sel.innerHTML='<option value="">Semua kategori</option>'+kt.map(k=>`<option ${K.kat===k?'selected':''}>${esc(k)}</option>`).join('')}
+ const R=kasRows(),w=W();let tm=0,tk=0;
+ const rows=R.map(({t,s},i)=>{const m=t.jenis==='masuk',j=+t.jumlah||0;if(m)tm+=j;else tk+=j;
+  return`<tr><td class="n mut">${i+1}</td><td>${fd(t.tgl)}</td><td>${esc(t.bukti)}</td><td>${t.nik?`<a href="#" data-a="open" data-k="${esc(t.nik)}" style="color:var(--p)">${esc(t.nama||t.nik)}</a>`:'<i class="mut">Umum</i>'}${t.nop?`<br><small class="mut">${esc(t.nop)}</small>`:''}</td><td style="white-space:normal;min-width:200px">${esc(t.uraian)}${t.ket?`<br><small class="mut">${esc(t.ket)}</small>`:''}</td><td>${esc(t.kat)}</td><td class="n pos">${m?nf(j):''}</td><td class="n neg">${m?'':nf(j)}</td><td class="n ${sg(s)}">${s<0?'−':''}${nf(s)}</td><td>${w?`<button class="btn s" data-a="edit" data-id="${t.id}">Ubah</button> <button class="btn s d" data-a="del" data-id="${t.id}">Hapus</button>`:''}</td></tr>`}).join('');
+ $('#tbl').innerHTML=R.length?`<table><thead><tr><th class="n">No</th><th>Tanggal</th><th>No. Bukti</th><th>Orang</th><th>Uraian</th><th>Kategori</th><th class="n">Pemasukan (Rp)</th><th class="n">Pengeluaran (Rp)</th><th class="n">Saldo Kas (Rp)</th><th></th></tr></thead><tbody>${rows}</tbody></table>`:'<div class="empty">Belum ada transaksi yang cocok. Tambahkan lewat tab Per Orang atau tombol + Pemasukan / + Pengeluaran.</div>';
+ $('#foot').innerHTML=`<span>${nf(R.length)} transaksi</span><span>Pemasukan <b class="pos">${rp(tm)}</b></span><span>Pengeluaran <b class="neg">${rp(tk)}</b></span><span>Selisih <b class="${sg(tm-tk)}">${rp(tm-tk)}</b></span>`}
+
+/* ===== Tab: Rekap ===== */
+function rekapData(){
+ const kat=new Map(),bl=new Map();
+ TRX().forEach(t=>{const j=+t.jumlah||0,k=t.jenis+'|'+(t.kat||'(tanpa kategori)');
+  const a=kat.get(k)||{jenis:t.jenis,kat:t.kat||'(tanpa kategori)',n:0,sum:0};a.n++;a.sum+=j;kat.set(k,a);
+  const ym=(t.tgl||'').slice(0,7)||'-',b=bl.get(ym)||{ym,m:0,k:0};if(t.jenis==='masuk')b.m+=j;else b.k+=j;bl.set(ym,b)});
+ return{kat:[...kat.values()].sort((a,b)=>a.jenis.localeCompare(b.jenis)||b.sum-a.sum),bl:[...bl.values()].sort((a,b)=>a.ym.localeCompare(b.ym))}}
+function rekapHTML(){
+ const R=rekapData();let s=0;
+ const t1=R.kat.map(a=>`<tr><td>${a.jenis==='masuk'?'Pemasukan':'Pengeluaran'}</td><td>${esc(a.kat)}</td><td class="n">${a.n}</td><td class="n ${a.jenis==='masuk'?'pos':'neg'}">${nf(a.sum)}</td></tr>`).join('');
+ const t2=R.bl.map(b=>{s+=b.m-b.k;return`<tr><td>${b.ym==='-'?'(tanpa tanggal)':bln(b.ym)}</td><td class="n pos">${nf(b.m)}</td><td class="n neg">${nf(b.k)}</td><td class="n ${sg(b.m-b.k)}">${b.m-b.k<0?'−':''}${nf(b.m-b.k)}</td><td class="n ${sg(s)}">${s<0?'−':''}${nf(s)}</td></tr>`}).join('');
+ return`<h3 class="sec">Per kategori</h3><table><thead><tr><th>Jenis</th><th>Kategori</th><th class="n">Transaksi</th><th class="n">Jumlah (Rp)</th></tr></thead><tbody>${t1||'<tr><td colspan="4" class="empty">Belum ada transaksi.</td></tr>'}</tbody></table>
+ <h3 class="sec">Per bulan</h3><table><thead><tr><th>Bulan</th><th class="n">Pemasukan (Rp)</th><th class="n">Pengeluaran (Rp)</th><th class="n">Selisih (Rp)</th><th class="n">Saldo kumulatif (Rp)</th></tr></thead><tbody>${t2||'<tr><td colspan="5" class="empty">Belum ada transaksi.</td></tr>'}</tbody></table>`}
+function viewRek(){$('#view').innerHTML=`<div class="bar"><span style="flex:1"></span><button class="btn" data-a="prRek">Cetak</button></div><div class="box"><div class="tw" style="padding:6px 10px 16px">${rekapHTML()}</div></div>`}
+
+/* ===== Tab: Pengaturan ===== */
+function viewSet(){
+ const c=cfg(),w=W(),ov=Object.keys(c.ov||{}).length,dis=w?'':'disabled';
+ $('#view').innerHTML=`<div class="box"><div class="tw" style="padding:14px;max-width:640px">
+ <div class="g"><div class="f"><label>Tarif standar per pengajuan (Rp)</label><input id="s_tarif" inputmode="numeric" value="${c.tarif?nf(c.tarif):''}" placeholder="0 = tanpa tagihan" oninput="fmtNum(this)" ${dis}>
+ <p class="hint">Tagihan tiap orang = tarif × jumlah pengajuannya (satu NIK bisa punya beberapa pengajuan). Dipakai untuk kolom Tagihan, Kekurangan, dan status Lunas/Kurang. Kosongkan bila tidak dipakai. Tagihan khusus per orang dapat diatur di jendela rincian orang${ov?` (saat ini ${ov} orang)`:''}.</p></div>
+ <div class="f"><label>Kategori pemasukan (satu per baris)</label><textarea id="s_km" rows="5" ${dis}>${esc(c.katMasuk.join('\n'))}</textarea></div>
+ <div class="f"><label>Kategori pengeluaran (satu per baris)</label><textarea id="s_kk" rows="6" ${dis}>${esc(c.katKeluar.join('\n'))}</textarea></div></div>
+ ${w?'<p><button class="btn p" data-a="saveCfg">Simpan pengaturan</button></p>':'<p class="hint">Hak akses Anda hanya-baca.</p>'}
+ </div></div>`}
+function saveCfg(){
+ const tarif=parseInt(($('#s_tarif').value||'').replace(/\D/g,''),10)||0,ln=id=>$(id).value.split('\n').map(x=>x.trim()).filter(Boolean);
+ cfgW(r=>{r.tarif=tarif;r.katMasuk=ln('#s_km');r.katKeluar=ln('#s_kk')});SB.toast('Pengaturan disimpan.',2500)}
+function fmtNum(el){const d=el.value.replace(/\D/g,'');el.value=d?(+d).toLocaleString('id-ID'):''}
+
+/* ===== Rincian per orang ===== */
+function detail(){
+ const p=DK===''?D.U:D.map.get(DK);const mo=$('#m');
+ if(!p){DK=null;mo.classList.remove('on');return}
+ const w=W(),L=ledger(p.tx),sc=$('#card').scrollTop,c=cfg(),hasOv=c.ov&&c.ov[p.key]!=null&&c.ov[p.key]!=='';
+ const ajRows=p.aj.map((a,i)=>`<tr><td class="n">${i+1}</td><td>${esc(a.nop)}</td><td>${esc(D.wp.get(a.nop)||'-')}</td><td>${esc(a.nub)}</td><td>${esc(yu(a.yuridis))}</td><td>${esc(a.nib)}</td><td>${esc(a.status)}</td></tr>`).join('');
+ const lg=L.map(({t,s},i)=>{const m=t.jenis==='masuk';return`<tr><td class="n mut">${i+1}</td><td>${fd(t.tgl)}</td><td>${esc(t.bukti)}</td><td style="white-space:normal;min-width:170px">${esc(t.uraian)}${t.nop?`<br><small class="mut">NOP ${esc(t.nop)}</small>`:''}</td><td>${esc(t.kat)}</td><td class="n pos">${m?nf(t.jumlah):''}</td><td class="n neg">${m?'':nf(t.jumlah)}</td><td class="n ${sg(s)}">${s<0?'−':''}${nf(s)}</td><td>${w?`<button class="btn s" data-a="edit" data-id="${t.id}">Ubah</button> <button class="btn s d" data-a="del" data-id="${t.id}">Hapus</button>`:''}</td></tr>`}).join('');
+ $('#card').innerHTML=`<div class="row"><div style="flex:1;min-width:200px"><h3 style="margin:0">${esc(p.nama)}</h3><div class="mut">${p.umum?'Pemasukan/pengeluaran yang tidak terkait satu orang':`NIK ${esc(p.nik)||'-'} · ${esc(p.alamat)||'alamat belum ada'}`}</div></div>
+  ${w?`<button class="btn in" data-a="add" data-j="masuk" data-k="${esc(p.key)}" data-lock="1">+ Pemasukan</button><button class="btn out" data-a="add" data-j="keluar" data-k="${esc(p.key)}" data-lock="1">+ Pengeluaran</button>`:''}
+  <button class="btn" data-a="prKartu" data-k="${esc(p.key)}">Cetak kartu</button><button class="btn" data-a="close">Tutup</button></div>
+ <div class="sg"><div><small>Tagihan</small><b>${p.tagihan==null?'-':rp(p.tagihan)}</b></div><div><small>Pemasukan</small><b class="pos">${rp(p.masuk)}</b></div><div><small>Kekurangan</small><b class="${p.sisa?'neg':''}">${p.sisa==null?'-':rp(p.sisa)}</b></div><div><small>Pengeluaran</small><b class="neg">${rp(p.keluar)}</b></div><div><small>Saldo</small><b class="${sg(p.saldo)}">${rp(p.saldo)}</b></div><div><small>Status</small><b>${p.sb||'-'}</b></div></div>
+ ${p.umum||p.orphan?'':`<div class="row" style="margin-bottom:6px"><label style="margin:0">Tagihan khusus (Rp)</label><input id="dv_ov" inputmode="numeric" style="width:150px" placeholder="ikut tarif standar" value="${hasOv?nf(c.ov[p.key]):''}" oninput="fmtNum(this)" ${w?'':'disabled'}>${w?`<button class="btn s" data-a="saveOv" data-k="${esc(p.key)}">Simpan</button>`:''}<span class="hint">Kosongkan untuk memakai tarif standar × ${p.aj.length} pengajuan. Isi 0 bila dibebaskan.</span></div>`}
+ ${p.aj.length?`<div class="sec">Pengajuan PTSL (${p.aj.length})</div><div class="tw" style="overflow:auto"><table><thead><tr><th class="n">No</th><th>NOP</th><th>Nama WP</th><th>NUB</th><th>Yuridis</th><th>NIB</th><th>Status</th></tr></thead><tbody>${ajRows}</tbody></table></div>`:''}
+ <div class="sec">Catatan keuangan (${L.length})</div>
+ ${L.length?`<div class="tw" style="overflow:auto"><table><thead><tr><th class="n">No</th><th>Tanggal</th><th>No. Bukti</th><th>Uraian</th><th>Kategori</th><th class="n">Masuk (Rp)</th><th class="n">Keluar (Rp)</th><th class="n">Saldo (Rp)</th><th></th></tr></thead><tbody>${lg}</tbody></table></div>`:'<div class="empty">Belum ada catatan untuk orang ini.</div>'}`;
+ mo.classList.add('on');$('#card').scrollTop=sc}
+
+/* ===== Formulir transaksi ===== */
+function katOpts(j){const c=cfg();$('#dlk').innerHTML=(j==='masuk'?c.katMasuk:c.katKeluar).map(k=>`<option value="${esc(k)}">`).join('')}
+function openForm(o){
+ if(!TBLOK)return alert('Tabel keuangan belum dibuat di Supabase (jalankan schema-keuangan.sql).');
+ if(!W())return alert('Hak akses Anda hanya-baca.');
+ const t=o.id?S.kx.find(x=>x.id===o.id):null;
+ FM={id:t?t.id:null,lock:!!o.lock&&!t,key:t?(t.nik||''):(o.key||''),aj:t?(t.ajId||''):''};
+ const j=t?t.jenis:(o.jenis||'masuk'),p=FM.key===''?D.U:D.map.get(FM.key);
+ const who=FM.lock?`<div class="f"><label>Orang</label><input readonly value="${esc(p?p.nama:'')}${p&&p.nik?' — '+esc(p.nik):''}"></div>`
+  :`<div class="f"><label>Orang / pengajuan</label><input id="fq" placeholder="Cari nama / NIK / NOP…" data-i="fq"><select id="fo" data-i="fo" style="margin-top:6px"></select></div>`;
+ $('#card2').innerHTML=`<h3 style="margin-top:0">${t?'Ubah':'Tambah'} catatan keuangan</h3><div class="g">
+ <div><label>Jenis</label><select id="fj" data-i="fj"><option value="masuk" ${j==='masuk'?'selected':''}>Pemasukan</option><option value="keluar" ${j==='keluar'?'selected':''}>Pengeluaran</option></select></div>
+ <div><label>Tanggal</label><input type="date" id="ft" value="${esc(t?t.tgl:TODAY())}"></div>
+ ${who}
+ <div class="f" id="fawrap"><label>Terkait pengajuan (NOP)</label><select id="fa"></select></div>
+ <div><label>Kategori</label><input id="fk" list="dlk" value="${esc(t?t.kat:'')}" autocomplete="off"><datalist id="dlk"></datalist></div>
+ <div><label>Jumlah (Rp)</label><input id="fn" inputmode="numeric" value="${t?nf(t.jumlah):''}" oninput="fmtNum(this)" placeholder="0"></div>
+ <div class="f"><label>Uraian</label><input id="fu" value="${esc(t?t.uraian:'')}" placeholder="mis. Pembayaran biaya PTSL / beli materai"></div>
+ <div><label>No. bukti / kwitansi</label><input id="fb" value="${esc(t?t.bukti:'')}"></div>
+ <div><label>Keterangan</label><input id="fe" value="${esc(t?t.ket:'')}"></div></div>
+ <div class="row" style="margin-top:12px;justify-content:flex-end"><button class="btn" data-a="close2">Batal</button><button class="btn p" data-a="saveTrx">Simpan</button></div>`;
+ katOpts(j);if(!FM.lock)fillOrgSel();fillAj();$('#m2').classList.add('on');setTimeout(()=>{const e=$('#fn');e&&e.focus()},50)}
+function fillOrgSel(){
+ const q=($('#fq').value||'').trim().toLowerCase(),cur=FM.key;
+ let L=D.P.filter(p=>!q||(p.nama+' '+p.nik+' '+p.aj.map(a=>a.nop).join(' ')).toLowerCase().includes(q)).sort((a,b)=>a.nama.localeCompare(b.nama)).slice(0,80);
+ if(cur!==''&&!L.some(p=>p.key===cur)){const c=D.map.get(cur);if(c)L.unshift(c)}
+ $('#fo').innerHTML='<option value="">Umum (tidak terkait orang)</option>'+L.map(p=>`<option value="${esc(p.key)}" ${p.key===cur?'selected':''}>${esc(p.nama)} — ${esc(p.nik)||'tanpa NIK'}</option>`).join('');
+ $('#fo').value=cur}
+function fillAj(){
+ const p=FM.key===''?null:D.map.get(FM.key),wr=$('#fawrap');
+ if(!p||!p.aj.length){wr.style.display='none';FM.aj='';return}
+ wr.style.display='';
+ $('#fa').innerHTML='<option value="">Semua pengajuan / tidak spesifik</option>'+p.aj.map(a=>`<option value="${a.id}" ${a.id===FM.aj?'selected':''}>${esc(a.nop)||'tanpa NOP'}${a.nub?' · NUB '+esc(a.nub):''}</option>`).join('')}
+function saveTrx(){
+ const jenis=$('#fj').value,tgl=$('#ft').value,jml=parseInt(($('#fn').value||'').replace(/\D/g,''),10)||0;
+ if(!tgl)return alert('Isi tanggal.');if(jml<=0)return alert('Jumlah harus lebih dari 0.');
+ const key=FM.lock?FM.key:$('#fo').value,p=key===''?null:D.map.get(key),aj=p&&$('#fa').value?$('#fa').value:'',a=aj&&p?p.aj.find(x=>x.id===aj):null;
+ const rec={jenis,tgl,kat:$('#fk').value.trim(),uraian:$('#fu').value.trim(),jumlah:jml,nik:key,nama:p?p.nama:'',ajId:aj,nop:a?(a.nop||''):'',bukti:$('#fb').value.trim(),ket:$('#fe').value.trim()};
+ if(FM.id){const t=S.kx.find(x=>x.id===FM.id);if(!t)return alert('Catatan tidak ditemukan (mungkin sudah dihapus pengguna lain).');Object.assign(t,rec)}
+ else S.kx=S.kx.concat([Object.assign({id:'k'+uid()},rec)]);
+ SB.push();FM=null;$('#m2').classList.remove('on');render()}
+function delTrx(id){
+ const t=S.kx.find(x=>x.id===id);if(!t||!W())return;
+ if(!confirm('Hapus catatan '+(t.jenis==='masuk'?'pemasukan':'pengeluaran')+' Rp '+nf(t.jumlah)+' ('+(t.nama||'Umum')+', '+fd(t.tgl)+')?'))return;
+ S.kx=S.kx.filter(x=>x.id!==id);SB.push();render()}
+
+/* ===== Ekspor & cetak ===== */
+function dl(n,b){const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=n;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),1e4)}
+const csvE=v=>{v=String(v??'');return/^\d{15,}$/.test(v)?'="'+v+'"':'"'+v.replace(/"/g,'""')+'"'};
+const csv=rows=>new Blob(['\ufeff'+rows.map(r=>r.map(csvE).join(',')).join('\n')],{type:'text/csv;charset=utf-8'});
+function printDoc(title,sub,body,land){
+ $('#pp').innerHTML=`<h2>${title}<br>DESA KADAKAJAYA KEC. TANJUNGSARI KAB. SUMEDANG</h2><div class="sub">${sub}</div>${body}`;
+ let s=$('#pgs');if(!s){s=document.createElement('style');s.id='pgs';document.head.appendChild(s)}
+ s.textContent='@page{size:'+(land?'A4 landscape':'A4 portrait')+';margin:10mm}';
+ document.body.classList.add('ppr');
+ const done=()=>{document.body.classList.remove('ppr');window.removeEventListener('afterprint',done)};
+ window.addEventListener('afterprint',done);window.print()}
+const tgCtk=()=>{const d=new Date();return String(d.getDate()).padStart(2,'0')+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+d.getFullYear()};
+function prOrg(){
+ const R=orgRows();let tm=0,tk=0,tt=0,ts=0;
+ const rows=R.map((p,i)=>{tm+=p.masuk;tk+=p.keluar;tt+=p.tagihan||0;ts+=p.sisa||0;return`<tr><td class="n">${i+1}</td><td>${esc(p.nama)}</td><td>${esc(p.nik)}</td><td>${esc(p.alamat)}</td><td class="n">${p.aj.length||''}</td><td class="n">${p.tagihan==null?'':nf(p.tagihan)}</td><td class="n">${p.masuk?nf(p.masuk):''}</td><td class="n">${p.keluar?nf(p.keluar):''}</td><td class="n">${p.tx.length?(p.saldo<0?'-':'')+nf(p.saldo):''}</td><td class="n">${p.sisa==null?'':nf(p.sisa)}</td><td>${esc(p.sb)}</td></tr>`}).join('');
+ printDoc('REKAP KEUANGAN PTSL PER ORANG',(F.sb?'FILTER : '+esc(F.sb.replace('_tx','ADA TRANSAKSI').replace('_no','BELUM ADA TRANSAKSI').toUpperCase())+' &nbsp; ':'')+(F.q?'CARI : '+esc(F.q.toUpperCase())+' &nbsp; ':'')+'JUMLAH : '+R.length+' ORANG &nbsp; per TGL. : '+tgCtk(),
+  `<table><thead><tr><th>No</th><th>Nama</th><th>NIK</th><th>Alamat</th><th>Pengajuan</th><th>Tagihan (Rp)</th><th>Pemasukan (Rp)</th><th>Pengeluaran (Rp)</th><th>Saldo (Rp)</th><th>Kekurangan (Rp)</th><th>Status</th></tr></thead><tbody>${rows}</tbody><tfoot><tr><td colspan="5">JUMLAH</td><td class="n">${nf(tt)}</td><td class="n">${nf(tm)}</td><td class="n">${nf(tk)}</td><td class="n">${tm-tk<0?'-':''}${nf(tm-tk)}</td><td class="n">${nf(ts)}</td><td></td></tr></tfoot></table>`,true)}
+function prKas(){
+ const R=kasRows();let tm=0,tk=0;
+ const rows=R.map(({t,s},i)=>{const m=t.jenis==='masuk',j=+t.jumlah||0;if(m)tm+=j;else tk+=j;return`<tr><td class="n">${i+1}</td><td>${fd(t.tgl)}</td><td>${esc(t.bukti)}</td><td>${esc(t.nama||'Umum')}</td><td>${esc(t.uraian)}</td><td>${esc(t.kat)}</td><td class="n">${m?nf(j):''}</td><td class="n">${m?'':nf(j)}</td><td class="n">${s<0?'-':''}${nf(s)}</td></tr>`}).join('');
+ printDoc('BUKU KAS PTSL',(K.d1||K.d2?'PERIODE : '+(fd(K.d1)||'awal')+' s/d '+(fd(K.d2)||'akhir')+' &nbsp; ':'')+(K.j?(K.j==='masuk'?'PEMASUKAN':'PENGELUARAN')+' &nbsp; ':'')+(K.kat?'KATEGORI : '+esc(K.kat.toUpperCase())+' &nbsp; ':'')+'per TGL. : '+tgCtk(),
+  `<table><thead><tr><th>No</th><th>Tanggal</th><th>No. Bukti</th><th>Orang</th><th>Uraian</th><th>Kategori</th><th>Pemasukan (Rp)</th><th>Pengeluaran (Rp)</th><th>Saldo Kas (Rp)</th></tr></thead><tbody>${rows}</tbody><tfoot><tr><td colspan="6">JUMLAH</td><td class="n">${nf(tm)}</td><td class="n">${nf(tk)}</td><td class="n">${tm-tk<0?'-':''}${nf(tm-tk)}</td></tr></tfoot></table>`,true)}
+function prRek(){printDoc('REKAP KEUANGAN PTSL','per TGL. : '+tgCtk(),rekapHTML(),false)}
+function prKartu(key){
+ const p=key===''?D.U:D.map.get(key);if(!p)return;const L=ledger(p.tx);
+ const aj=p.aj.map((a,i)=>`<tr><td class="n">${i+1}</td><td>${esc(a.nop)}</td><td>${esc(D.wp.get(a.nop)||'')}</td><td>${esc(a.nub)}</td><td>${esc(yu(a.yuridis))}</td><td>${esc(a.nib)}</td><td>${esc(a.status)}</td></tr>`).join('');
+ const lg=L.map(({t,s},i)=>{const m=t.jenis==='masuk';return`<tr><td class="n">${i+1}</td><td>${fd(t.tgl)}</td><td>${esc(t.bukti)}</td><td>${esc(t.uraian)}${t.nop?' (NOP '+esc(t.nop)+')':''}</td><td>${esc(t.kat)}</td><td class="n">${m?nf(t.jumlah):''}</td><td class="n">${m?'':nf(t.jumlah)}</td><td class="n">${s<0?'-':''}${nf(s)}</td></tr>`}).join('');
+ const kv=(a,b)=>`<tr><td>${a}</td><td>: ${b}</td></tr>`;
+ printDoc('KARTU KEUANGAN PTSL','per TGL. : '+tgCtk(),
+  `<table class="kv"><tbody>${kv('Nama',esc(p.nama))}${p.umum?'':kv('NIK',esc(p.nik)||'-')+kv('Alamat',esc(p.alamat)||'-')+kv('Jumlah pengajuan',p.aj.length)}${p.tagihan==null?'':kv('Tagihan','Rp '+nf(p.tagihan))}${kv('Total pemasukan','Rp '+nf(p.masuk))}${p.sisa==null?'':kv('Kekurangan','Rp '+nf(p.sisa)+' ('+p.sb+')')}${kv('Total pengeluaran','Rp '+nf(p.keluar))}${kv('Saldo',(p.saldo<0?'-':'')+'Rp '+nf(p.saldo))}</tbody></table>
+  ${p.aj.length?`<h3>Pengajuan PTSL</h3><table><thead><tr><th>No</th><th>NOP</th><th>Nama WP</th><th>NUB</th><th>Yuridis</th><th>NIB</th><th>Status</th></tr></thead><tbody>${aj}</tbody></table>`:''}
+  <h3>Rincian pemasukan &amp; pengeluaran</h3><table><thead><tr><th>No</th><th>Tanggal</th><th>No. Bukti</th><th>Uraian</th><th>Kategori</th><th>Masuk (Rp)</th><th>Keluar (Rp)</th><th>Saldo (Rp)</th></tr></thead><tbody>${lg||'<tr><td colspan="8">Belum ada catatan.</td></tr>'}</tbody><tfoot><tr><td colspan="5">JUMLAH</td><td class="n">${nf(p.masuk)}</td><td class="n">${nf(p.keluar)}</td><td class="n">${p.saldo<0?'-':''}${nf(p.saldo)}</td></tr></tfoot></table>`,false)}
+
+/* ===== Peristiwa ===== */
+document.addEventListener('click',e=>{
+ const el=e.target.closest('[data-a]');if(!el)return;const d=el.dataset,a=d.a;
+ if(el.tagName==='A')e.preventDefault();
+ if(a==='tab'){tab=d.v;render()}
+ else if(a==='open'){DK=d.k;detail()}
+ else if(a==='close'){DK=null;$('#m').classList.remove('on')}
+ else if(a==='close2'){FM=null;$('#m2').classList.remove('on')}
+ else if(a==='add')openForm({jenis:d.j,key:d.k,lock:d.lock==='1'})
+ else if(a==='edit')openForm({id:d.id})
+ else if(a==='del')delTrx(d.id)
+ else if(a==='saveTrx')saveTrx()
+ else if(a==='saveCfg')saveCfg()
+ else if(a==='saveOv'){const v=($('#dv_ov').value||'').replace(/\D/g,''),k=d.k;cfgW(r=>{r.ov=r.ov||{};if(v==='')delete r.ov[k];else r.ov[k]=+v})}
+ else if(a==='prOrg')prOrg();else if(a==='prKas')prKas();else if(a==='prRek')prRek();else if(a==='prKartu')prKartu(d.k)
+ else if(a==='csvOrg'){const R=orgRows();dl('keuangan-ptsl-per-orang.csv',csv([['No','Nama','NIK','Alamat','Jumlah Pengajuan','Tagihan','Pemasukan','Pengeluaran','Saldo','Kekurangan','Status'],...R.map((p,i)=>[i+1,p.nama,p.nik,p.alamat,p.aj.length,p.tagihan??'',p.masuk,p.keluar,p.saldo,p.sisa??'',p.sb])]))}
+ else if(a==='csvKas'){const R=kasRows();dl('buku-kas-ptsl.csv',csv([['No','Tanggal','No Bukti','Nama','NIK','NOP','Uraian','Kategori','Pemasukan','Pengeluaran','Saldo Kas','Keterangan'],...R.map(({t,s},i)=>[i+1,t.tgl,t.bukti,t.nama||'Umum',t.nik&&!/^ID-/.test(t.nik)?t.nik:'',t.nop,t.uraian,t.kat,t.jenis==='masuk'?t.jumlah:'',t.jenis==='keluar'?t.jumlah:'',s,t.ket])]))}
+});
+document.addEventListener('input',e=>{
+ const t=e.target,i=t.dataset&&t.dataset.i;if(!i)return;
+ if(i==='org'){F[t.dataset.k]=t.value;fillOrg()}
+ else if(i==='kas'){K[t.dataset.k]=t.value;fillKas()}
+ else if(i==='fq')fillOrgSel();
+ else if(i==='fo'){FM.key=t.value;FM.aj='';fillAj()}
+ else if(i==='fj')katOpts(t.value)});
+['m','m2'].forEach(id=>$('#'+id).addEventListener('click',e=>{if(e.target.id===id){if(id==='m'){DK=null}else{FM=null}e.target.classList.remove('on')}}));
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(FM){FM=null;$('#m2').classList.remove('on')}else if(DK!==null){DK=null;$('#m').classList.remove('on')}}});
+
+/* ===== Mulai: pengajuan & DHKP hanya dibaca; keuangan dibaca-tulis ===== */
+SB.start({module:'ptsl',title:'Keuangan PTSL Desa Kadakajaya',
+ collections:[
+  {key:'aj',table:'pengajuan',mod:'ptsl',rt:1,ro:1,get:()=>S.aj,set:a=>S.aj=a},
+  {key:'dh',table:'dhkp',mod:'ptsl',ro:1,get:()=>S.dh,set:a=>S.dh=a},
+  {key:'kx',table:'keuangan',mod:'ptsl',rt:1,get:()=>S.kx,set:a=>S.kx=a}],
+ onData:()=>{try{render()}catch(e){console.error(e)}},
+ onReady:async()=>{
+  try{const r=await SB.client.from('keuangan').select('id').limit(1);if(r.error)TBLOK=false}catch(e){TBLOK=false}
+  render()}});
+</script></body></html>
