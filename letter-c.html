@@ -25,14 +25,14 @@ table{width:100%;border-collapse:collapse;background:#fff}th,td{padding:9px;bord
 .sk .kop b{font-size:15px;letter-spacing:.5px}.sk .kop div{font-size:12px}
 .sk h3{text-align:center;text-decoration:underline;margin:10px 0 2px;font-size:15px}.sk .no{text-align:center;margin-bottom:10px}
 .sk .idt td{border:0;padding:1px 6px;font-size:12px;vertical-align:top}
-.sk .bk{width:100%;border-collapse:collapse;margin:8px 0}.sk .bk th,.sk .bk td{border:1px solid #000;text-align:center;padding:3px 4px;font-size:11px;vertical-align:top}
-.sk .bk th{background:#eee;color:#000}.sk .bk td.r{text-align:right}.sk .bk tr.tot td{font-weight:700;background:#f6f6f6}.sk .bk td.mut{text-align:left;font-size:10.5px}
+.sk .bk{width:100%;border-collapse:collapse;margin:8px 0;table-layout:fixed}.sk .bk th,.sk .bk td{border:1px solid #000;text-align:center;padding:3px 4px;font-size:12.5px;vertical-align:top}.sk .bk td.pl{overflow-wrap:anywhere;word-break:break-all}.sk .bk td.r{white-space:nowrap}
+.sk .bk th{background:#eee;color:#000}.sk .bk td.r{text-align:right}.sk .bk tr.tot td{font-weight:700;background:#f6f6f6}.sk .bk td.mut{text-align:left;font-size:11.5px}
 .sk .ttd{display:flex;justify-content:space-between;margin-top:18px;page-break-inside:avoid}.sk .ttd div{width:260px;text-align:center}
 .sk .cat{font-size:10.5px;margin-top:10px}
 .pcb{position:relative;flex:1;min-width:280px}.pcb .search{width:100%;box-sizing:border-box}.pcb .cbx{position:absolute;right:8px;top:50%;transform:translateY(-50%);border:0;background:none;cursor:pointer;color:#66736a;font-size:14px}.pcb .search{padding-right:30px}.mpl{display:flex;gap:7px;align-items:center;padding:4px 2px;font-size:13px;cursor:pointer}.mpl input{width:auto!important;margin:0}.mpl small{color:#66736a}.pcbr{position:absolute;left:0;right:0;top:100%;margin-top:3px;background:#fff;border:1px solid #cbd8cf;border-radius:8px;box-shadow:0 8px 24px #0003;max-height:320px;overflow:auto;z-index:50}.pcbr div{padding:8px 10px;cursor:pointer;border-bottom:1px solid #eef3ef;font-size:13px}.pcbr div:last-child{border:0}.pcbr div:hover,.pcbr div.on{background:#e8f3ec}.pcbr small{color:#66736a}.pcbr .em{padding:10px;color:#66736a;cursor:default}
 @page{size:330mm 215mm;margin:10mm 15mm}
 @media print{html,body{height:auto!important;min-height:0!important;background:#fff;margin:0}header,aside,.no-print{display:none!important}.layout{display:block;min-height:0!important}main{padding:0!important;margin:0!important;max-width:none;width:100%}.page{display:none!important}.page.active{display:block!important}.panel{border:0;box-shadow:none;padding:0;margin:0}
-.sk{font-size:11px;line-height:1.3}.sk p{margin:5px 0}.sk h3{margin:6px 0 1px}.sk .no{margin-bottom:6px}.sk .kop{padding-bottom:5px;margin-bottom:6px}.sk .kl img{height:62px;width:62px}.sk .kt{line-height:1.25}.sk .bk{margin:5px 0}.sk .bk th,.sk .bk td{padding:2px 4px;font-size:10.5px}.sk .ttd{margin-top:10px}.sk .idt td{font-size:11px;padding:0 6px}
+.sk{font-size:12px;line-height:1.3}.sk p{margin:5px 0}.sk h3{margin:6px 0 1px}.sk .no{margin-bottom:6px}.sk .kop{padding-bottom:5px;margin-bottom:6px}.sk .kl img{height:62px;width:62px}.sk .kt{line-height:1.25}.sk .bk{margin:5px 0}.sk .bk th,.sk .bk td{padding:2px 4px;font-size:12px}.sk .ttd{margin-top:10px}.sk .idt td{font-size:12px;padding:0 6px}
 .sk .bk tr,.sk .ttd{break-inside:avoid;page-break-inside:avoid}.sk .bk thead{display:table-header-group}}
 </style>
 </head>
@@ -84,7 +84,7 @@ table{width:100%;border-collapse:collapse;background:#fff}th,td{padding:9px;bord
 <div class="panel"><input id="globalQ" class="search" style="width:100%" placeholder="Nomor Kohir / Atas Nama / Persil / Bidang / Blok..." oninput="renderSearch()"><div id="searchOut" style="margin-top:15px"></div></div></section>
 
 <section id="cetak" class="page">
-<div class="toolbar no-print"><div id="cbw_printSel" style="display:contents"></div><input id="noSurat" class="search" style="min-width:200px;flex:none" placeholder="Nomor Surat" oninput="renderCertificate()"><label style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted)">Tanggal Surat<input id="tglSurat" type="date" class="search" style="min-width:150px;flex:none" oninput="renderCertificate()" onchange="renderCertificate()"></label><button class="btn primary" onclick="fitPrint();window.print()">🖨️ Cetak</button></div>
+<div class="toolbar no-print"><div id="cbw_printSel" style="display:contents"></div><input id="noSurat" class="search" style="min-width:170px;flex:none" placeholder="No. Reg. Surat (590/…/bln/thn)" title="Isi nomor registrasi surat saja. Format: 590 / No. Reg / Bulan Romawi / Tahun (otomatis dari Tanggal Surat)" oninput="renderCertificate()"><label style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted)">Tanggal Surat<input id="tglSurat" type="date" class="search" style="min-width:150px;flex:none" oninput="renderCertificate()" onchange="renderCertificate()"></label><button class="btn primary" onclick="fitPrint();window.print()">🖨️ Cetak</button></div>
 <div class="panel" id="certificate"></div></section>
 
 <section id="laporan" class="page"><h2>Laporan / Rekap</h2>
@@ -226,9 +226,9 @@ const S=db.settings,noS=(document.getElementById('noSurat')?.value||'').trim();
 const SW=act(x,'sawah'),DR=act(x,'darat'),BG=act(x,'bangunan'),n=Math.max(SW.length,DR.length,BG.length,1),d2=v=>Number(v||0).toLocaleString('id-ID',{minimumFractionDigits:2,maximumFractionDigits:2});
 const emp=r=>!r||(!r.persil&&!r.luas&&!r.pajak);
 let body='';for(let i=0;i<n;i++){let s=SW[i],d=DR[i],b=BG[i];
-let sc=emp(s)?'<td></td><td></td><td></td><td></td><td></td>':`<td>${esc(s.persil)}</td><td>${esc(s.kelasDesa)}</td><td>${esc(s.kelasNasional)}</td><td class="r">${d2(s.luas)}</td><td class="r">${d2(s.pajak)}</td>`;
-let dc=emp(d)?'<td></td><td></td><td></td><td></td><td></td>':`<td>${esc(d.persil)}</td><td>${esc(d.kelasDesa)}</td><td>${esc(d.kelasNasional)}</td><td class="r">${d2(d.luas)}</td><td class="r">${d2(d.pajak)}</td>`;
-let bc=emp(b)?'<td></td><td></td><td></td><td></td>':`<td>${esc(b.persil)}</td><td>${esc(b.golKelas)}</td><td class="r">${d2(b.luas)}</td><td class="r">${d2(b.pajak)}</td>`;
+let sc=emp(s)?'<td></td><td></td><td></td><td></td><td></td>':`<td class="pl">${esc(s.persil)}</td><td>${esc(s.kelasDesa)}</td><td>${esc(s.kelasNasional)}</td><td class="r">${d2(s.luas)}</td><td class="r">${d2(s.pajak)}</td>`;
+let dc=emp(d)?'<td></td><td></td><td></td><td></td><td></td>':`<td class="pl">${esc(d.persil)}</td><td>${esc(d.kelasDesa)}</td><td>${esc(d.kelasNasional)}</td><td class="r">${d2(d.luas)}</td><td class="r">${d2(d.pajak)}</td>`;
+let bc=emp(b)?'<td></td><td></td><td></td><td></td>':`<td class="pl">${esc(b.persil)}</td><td>${esc(b.golKelas)}</td><td class="r">${d2(b.luas)}</td><td class="r">${d2(b.pajak)}</td>`;
 let mc=i===0?`<td class="mut" rowspan="${n+1}">${ms.length?ms.map(m=>`${esc(m.tanggal)} — ${esc(m.jenis)}${m.dari?' dari '+esc(m.dari):''}${m.kepada?' kepada '+esc(m.kepada):''}${m.luas?' ('+d2(m.luas)+' m²)':''}${m.dasar?' ['+esc(m.dasar)+']':''}${(m.persil||[]).length?' — Persil: '+esc(mPersil(m,x)):''}${m.ket?' — '+esc(m.ket):''}`).join('<br>'):'-'}</td>`:'';
 body+=`<tr>${sc}${dc}${bc}${mc}</tr>`}
 const T=(t,k)=>d2(totalRows(x,t,k));
@@ -236,11 +236,11 @@ body+=`<tr class="tot"><td colspan="3">Jumlah</td><td class="r">${T('sawah','lua
 const tv=document.getElementById('tglSurat')?.value,td=tv?new Date(tv+'T00:00:00'):new Date(),tl=td.toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'});
 const totLuas=totalRows(x,'sawah','luas')+totalRows(x,'darat','luas')+totalRows(x,'bangunan','luas'),totPajak=totalRows(x,'sawah','pajak')+totalRows(x,'darat','pajak')+totalRows(x,'bangunan','pajak');
 certificate.innerHTML=`<div class="sk"><div class="kop"><div class="kl">${S.logo?`<img src="${S.logo}" alt="">`:''}</div><div class="kt"><b>${esc((S.pemda||'').toUpperCase())}</b><div>${esc((S.kec||'').toUpperCase())}</div><b>PEMERINTAH DESA ${esc(S.desa.toUpperCase())}</b>${S.alamat?`<div class="al">${esc(S.alamat)}</div>`:''}</div><div class="kl"></div></div>
-<h3>SURAT KETERANGAN DATA LETTER C DESA</h3><div class="no">Nomor : ${noS?esc(noS):'.........  /  .........  /  .........  /  '+td.getFullYear()}</div>
+<h3>SURAT KETERANGAN DATA LETTER C DESA</h3><div class="no">Nomor : 590 / ${noS?esc(noS):'.........'} / ${['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII'][td.getMonth()]} / ${td.getFullYear()}</div>
 <p>Yang bertanda tangan di bawah ini, Kepala Desa ${esc(S.desa)}${S.kec?', '+esc(S.kec.toLowerCase().replace(/(^|\s)\S/g,m=>m.toUpperCase())):''}, menerangkan bahwa berdasarkan Buku Letter C Desa ${esc(S.desa)} terdapat catatan sebagai berikut:</p>
 <table class="idt"><tr><td>Atas Nama</td><td>:</td><td><b>${esc(x.atasNama)}</b></td><td style="width:40px"></td><td>Nomor Kohir</td><td>:</td><td><b>${esc(x.kohir)}</b></td></tr>
 <tr><td>Tempat Tinggal</td><td>:</td><td>${esc(x.tempatTinggal)}</td><td></td><td>Halaman</td><td>:</td><td>${esc(x.halaman)}</td></tr></table>
-<table class="bk"><thead><tr><th colspan="15" style="font-size:12px">BUMI &amp; BANGUNAN</th></tr>
+<table class="bk"><colgroup><col style="width:6.5%"><col style="width:4.5%"><col style="width:4.5%"><col style="width:6.5%"><col style="width:8%"><col style="width:6.5%"><col style="width:4.5%"><col style="width:4.5%"><col style="width:6.5%"><col style="width:8%"><col style="width:6.5%"><col style="width:4.5%"><col style="width:6.5%"><col style="width:8%"><col style="width:14.5%"></colgroup><thead><tr><th colspan="15" style="font-size:12px">BUMI &amp; BANGUNAN</th></tr>
 <tr><th colspan="5">SAWAH</th><th colspan="5">DARAT</th><th colspan="4">BANGUNAN</th><th rowspan="3">MUTASI</th></tr>
 <tr><th rowspan="2">No. Persil &amp; No. Bidang</th><th colspan="2">Kelas</th><th rowspan="2">Luas (m²)</th><th rowspan="2">Pajak (Rp)</th><th rowspan="2">No. Persil &amp; No. Bidang</th><th colspan="2">Kelas</th><th rowspan="2">Luas (m²)</th><th rowspan="2">Pajak (Rp)</th><th rowspan="2">No. Persil &amp; No. Bidang</th><th rowspan="2">Gol/ Kelas</th><th rowspan="2">Luas (m²)</th><th rowspan="2">Pajak (Rp)</th></tr>
 <tr><th>Desa</th><th>Nasional</th><th>Desa</th><th>Nasional</th></tr>
